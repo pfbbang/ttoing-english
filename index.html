@@ -199,7 +199,7 @@
     </div>
     <div class="card" id="extractedCard" style="display:none;">
       <h2>추출된 단어 (확인하고 고쳐주세요)</h2>
-      <table id="wordTable"><thead><tr><th>영단어</th><th>품사</th><th>한글 뜻</th><th>예문</th><th>예문 해석</th><th></th></tr></thead><tbody></tbody></table>
+      <table id="wordTable"><thead><tr><th>영단어</th><th>품사</th><th>한글 뜻</th><th>영어 뜻(정의)</th><th>예문</th><th>예문 해석</th><th></th></tr></thead><tbody></tbody></table>
       <button class="btn btn-outline btn-sm" id="addRowBtn">+ 행 추가</button>
       <h3>단어장 이름</h3>
       <input type="text" id="wordsetName" placeholder="예: Unit 5 - 7월 3주차">
@@ -440,6 +440,7 @@
       tr.innerHTML = `<td><input type="text" data-i="${i}" data-f="word" value="${escapeHtml(w.word)}"></td>
         <td><input type="text" data-i="${i}" data-f="pos" value="${escapeHtml(w.pos)}" style="width:60px"></td>
         <td><input type="text" data-i="${i}" data-f="meaning_kr" value="${escapeHtml(w.meaning_kr)}"></td>
+        <td><input type="text" data-i="${i}" data-f="definition_en" value="${escapeHtml(w.definition_en)}"></td>
         <td><input type="text" data-i="${i}" data-f="example_en" value="${escapeHtml(w.example_en)}"></td>
         <td><input type="text" data-i="${i}" data-f="example_kr" value="${escapeHtml(w.example_kr)}"></td>
         <td><button class="btn btn-danger btn-sm" data-del="${i}">삭제</button></td>`;
@@ -449,7 +450,7 @@
     tbody.querySelectorAll('[data-del]').forEach(btn=>btn.addEventListener('click', ()=>{ extractedWords.splice(+btn.dataset.del,1); renderWordTable(); }));
     $('extractedCard').style.display = extractedWords.length ? 'block' : 'none';
   }
-  $('addRowBtn') && $('addRowBtn').addEventListener('click', ()=>{ extractedWords.push({word:'',pos:'',meaning_kr:'',example_en:'',example_kr:''}); renderWordTable(); });
+  $('addRowBtn') && $('addRowBtn').addEventListener('click', ()=>{ extractedWords.push({word:'',pos:'',meaning_kr:'',definition_en:'',example_en:'',example_kr:''}); renderWordTable(); });
 
   $('extractBtn') && $('extractBtn').addEventListener('click', async ()=>{
     const files = $('wordImages').files;
@@ -459,10 +460,10 @@
       const content=[]; for(const f of files){ content.push(imageBlock(await resizeImageFile(f))); }
       content.push({type:'text', text:
         '이 사진들은 초등학생 영어 단어장 페이지입니다. 보이는 모든 단어 항목을 JSON 배열로만 추출하세요.\n'+
-        '각 항목: {"word":"영어단어","pos":"품사(짧게)","meaning_kr":"한글 뜻","example_en":"예문(없으면 빈문자열)","example_kr":"예문 해석(없으면 빈문자열)"}\n'+
+        '각 항목: {"word":"영어단어","pos":"품사(짧게)","meaning_kr":"한글 뜻","definition_en":"단어장에 적힌 영어 뜻/영영 정의(있으면 그대로 옮기고, 단어장에 없으면 이 단어에 맞는 쉬운 영어 정의를 초등학생 수준으로 새로 만들어서 채워줘. 절대 빈 문자열로 두지 마)","example_en":"예문(없으면 빈문자열)","example_kr":"예문 해석(없으면 빈문자열)"}\n'+
         '설명 없이 JSON 배열만 출력. 중복 단어는 한 번만.'});
       const text = await callClaude({ system:'너는 정확한 데이터 추출기다. 항상 유효한 JSON만 출력한다.', content, maxTokens:4000 });
-      extractedWords = extractJSON(text).map(w=>({word:w.word||'',pos:w.pos||'',meaning_kr:w.meaning_kr||'',example_en:w.example_en||'',example_kr:w.example_kr||''}));
+      extractedWords = extractJSON(text).map(w=>({word:w.word||'',pos:w.pos||'',meaning_kr:w.meaning_kr||'',definition_en:w.definition_en||'',example_en:w.example_en||'',example_kr:w.example_kr||''}));
       renderWordTable();
       $('extractStatus').innerHTML = `<div class="status">${extractedWords.length}개 단어를 찾았어요! 확인하고 고쳐주세요. ✏️</div>`;
     }catch(err){ $('extractStatus').innerHTML = `<div class="status error">${escapeHtml(err.message)}</div>`; }
@@ -565,9 +566,10 @@
     return shuffle(words.map(w=>{
       const types = mode==='listen' ? ['A','B','C'] : ['A','B'];
       let avail = types.slice();
-      if(!(w.example_en && w.example_en.toLowerCase().includes((w.word||'').toLowerCase()))) avail = avail.filter(t=>t!=='B');
+      const hasDefOrExample = !!(w.definition_en) || (w.example_en && w.example_en.toLowerCase().includes((w.word||'').toLowerCase()));
+      if(!hasDefOrExample) avail = avail.filter(t=>t!=='B');
       const type = avail[Math.floor(Math.random()*avail.length)];
-      return { word:w.word, meaning_kr:w.meaning_kr, example_en:w.example_en, example_kr:w.example_kr, type, answer:w.word, meaningAnswer:w.meaning_kr };
+      return { word:w.word, meaning_kr:w.meaning_kr, definition_en:w.definition_en, example_en:w.example_en, example_kr:w.example_kr, type, answer:w.word, meaningAnswer:w.meaning_kr };
     })).map((it,i)=>({ no:i+1, ...it }));
   }
 
@@ -753,14 +755,14 @@
     const list = $('listenList');
     list.innerHTML = quiz.items.map(it=>{
       const showText = it.type==='C' ? escapeHtml(it.meaning_kr) : '🔊 소리로만 듣기';
-      return `<div class="listen-item"><div class="qmeta" style="float:none;">${it.no}번 · ${it.type==='A'?'단어 듣기':it.type==='B'?'문장 듣고 단어 쓰기':'뜻 듣고 단어 쓰기'}</div>
+      return `<div class="listen-item"><div class="qmeta" style="float:none;">${it.no}번 · ${it.type==='A'?'단어 듣기':it.type==='B'?'영영 설명 듣고 단어 쓰기':'뜻 듣고 단어 쓰기'}</div>
         <div class="spk" data-no="${it.no}">🔊</div><div class="hint">${showText}</div></div>`;
     }).join('');
     list.querySelectorAll('.spk').forEach(elm=>{
       elm.addEventListener('click', ()=>{
         const it = quiz.items.find(x=>x.no===+elm.dataset.no);
         if(it.type==='A') speak(it.word, 'en-US');
-        else if(it.type==='B') speak(it.example_en, 'en-US');
+        else if(it.type==='B') speak(it.definition_en || it.example_en, 'en-US');
         else speak(it.meaning_kr, 'ko-KR');
       });
     });
@@ -775,7 +777,7 @@
     $('gradeStatus').innerHTML='<div class="status loading">손글씨를 읽고 채점하고 있어요</div>'; $('gradeBtn').disabled=true;
     try{
       const b64 = await resizeImageFile(file);
-      const expectedList = quiz.items.map(it=>`${it.no}번 [${it.type==='A'?'단어 듣고 쓰기':it.type==='B'?'문장 듣고 단어 쓰기':'뜻 듣고 단어 쓰기'}] 정답: ${it.answer}`).join('\n');
+      const expectedList = quiz.items.map(it=>`${it.no}번 [${it.type==='A'?'단어 듣고 쓰기':it.type==='B'?'영영 설명 듣고 단어 쓰기':'뜻 듣고 단어 쓰기'}] 정답: ${it.answer}`).join('\n');
       const content = [ imageBlock(b64), { type:'text', text:
         '이 사진은 초등학생이 영어 듣기 받아쓰기 퀴즈 답을 공책에 번호를 매겨 손글씨로 쓴 것입니다.\n'+
         '문제 번호별 정답:\n'+expectedList+'\n\n'+
