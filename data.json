@@ -1,9 +1,235 @@
 {
-  "wordsets": [],
+  "wordsets": [
+    {
+      "id": "mrxcw387tuiho",
+      "name": "voca1,2,3",
+      "createdAt": "2026-07-23T10:16:09.559Z",
+      "words": [
+        {
+          "word": "non-stop",
+          "pos": "adv.",
+          "meaning_kr": "쉬지 않고 계속",
+          "example_en": "without stopping",
+          "example_kr": ""
+        },
+        {
+          "word": "path",
+          "pos": "n.",
+          "meaning_kr": "작은 길",
+          "example_en": "a track that is made by people or animals walking over the ground",
+          "example_kr": ""
+        },
+        {
+          "word": "compare - compared",
+          "pos": "v.",
+          "meaning_kr": "비교하다",
+          "example_en": "to measure or judge against something else",
+          "example_kr": ""
+        },
+        {
+          "word": "grin - grinned",
+          "pos": "v.",
+          "meaning_kr": "(소리 없이) 활짝 웃다",
+          "example_en": "to smile widely",
+          "example_kr": ""
+        },
+        {
+          "word": "waterproof",
+          "pos": "adj.",
+          "meaning_kr": "방수의",
+          "example_en": "designed to prevent water from entering",
+          "example_kr": ""
+        },
+        {
+          "word": "cliff",
+          "pos": "n.",
+          "meaning_kr": "절벽",
+          "example_en": "a high, steep surface of rock or earth",
+          "example_kr": ""
+        },
+        {
+          "word": "take a look - took a look",
+          "pos": "phr.",
+          "meaning_kr": "살펴보다, 점검하다",
+          "example_en": "to look at something closely",
+          "example_kr": ""
+        },
+        {
+          "word": "expect - expected",
+          "pos": "v.",
+          "meaning_kr": "예상하다",
+          "example_en": "to think that something will happen",
+          "example_kr": ""
+        },
+        {
+          "word": "lock - locked",
+          "pos": "v.",
+          "meaning_kr": "(자물쇠로) 잠그다",
+          "example_en": "to fasten something with a lock",
+          "example_kr": ""
+        },
+        {
+          "word": "tide",
+          "pos": "n.",
+          "meaning_kr": "조류, 밀물과 썰물",
+          "example_en": "the regular rise and fall of ocean water levels",
+          "example_kr": ""
+        },
+        {
+          "word": "mysterious",
+          "pos": "adj.",
+          "meaning_kr": "신비한",
+          "example_en": "strange, unknown, or difficult to understand",
+          "example_kr": ""
+        },
+        {
+          "word": "stranded",
+          "pos": "adj.",
+          "meaning_kr": "오도 가도 못하게 된",
+          "example_en": "unable to leave a place because of a problem",
+          "example_kr": ""
+        },
+        {
+          "word": "block - blocked",
+          "pos": "v.",
+          "meaning_kr": "막다, 차단하다",
+          "example_en": "to stop something from getting through",
+          "example_kr": ""
+        },
+        {
+          "word": "bay",
+          "pos": "n.",
+          "meaning_kr": "만(육지 쪽으로 들어와 있는 해안)",
+          "example_en": "a large area of water that is partly surrounded by land",
+          "example_kr": ""
+        },
+        {
+          "word": "impress - impressed",
+          "pos": "v.",
+          "meaning_kr": "깊은 인상을 주다",
+          "example_en": "to cause someone to feel admiration or interest",
+          "example_kr": ""
+        },
+        {
+          "word": "trust - trusted",
+          "pos": "v.",
+          "meaning_kr": "신뢰하다, 믿다",
+          "example_en": "to believe that someone will do the right thing",
+          "example_kr": ""
+        },
+        {
+          "word": "decision",
+          "pos": "n.",
+          "meaning_kr": "결정, 판단",
+          "example_en": "a choice that you make about something after thinking about it",
+          "example_kr": ""
+        },
+        {
+          "word": "common sense",
+          "pos": "n.",
+          "meaning_kr": "상식",
+          "example_en": "the ability to think and behave in a reasonable way",
+          "example_kr": ""
+        },
+        {
+          "word": "threatening",
+          "pos": "adj.",
+          "meaning_kr": "위협적인",
+          "example_en": "expressing trouble or danger",
+          "example_kr": ""
+        },
+        {
+          "word": "dot",
+          "pos": "n.",
+          "meaning_kr": "작은 점",
+          "example_en": "a small spot or area",
+          "example_kr": ""
+        },
+        {
+          "word": "cave",
+          "pos": "n.",
+          "meaning_kr": "동굴",
+          "example_en": "a large, naturally made hole in the ground",
+          "example_kr": ""
+        },
+        {
+          "word": "edge",
+          "pos": "n.",
+          "meaning_kr": "가장자리, 모서리",
+          "example_en": "the line where an area begins or ends",
+          "example_kr": ""
+        },
+        {
+          "word": "stick out - stuck out",
+          "pos": "phr.",
+          "meaning_kr": "(톡) 튀어나오다",
+          "example_en": "to extend outward beyond an edge or surface",
+          "example_kr": ""
+        },
+        {
+          "word": "terror",
+          "pos": "n.",
+          "meaning_kr": "(극심한) 두려움",
+          "example_en": "a very strong feeling of fear",
+          "example_kr": ""
+        },
+        {
+          "word": "stammer - stammered",
+          "pos": "v.",
+          "meaning_kr": "말을 더듬다",
+          "example_en": "to speak with difficulties",
+          "example_kr": ""
+        },
+        {
+          "word": "stitch",
+          "pos": "n.",
+          "meaning_kr": "(상처를 봉합한) 바늘땀",
+          "example_en": "a piece of thread that is used to close a wound",
+          "example_kr": ""
+        },
+        {
+          "word": "sink - sank",
+          "pos": "v.",
+          "meaning_kr": "가라앉다",
+          "example_en": "to move down to a lower position",
+          "example_kr": ""
+        },
+        {
+          "word": "roll - rolled",
+          "pos": "v.",
+          "meaning_kr": "굴러가다",
+          "example_en": "to move across the ground by turning over and over",
+          "example_kr": ""
+        },
+        {
+          "word": "crouch - crouched",
+          "pos": "v.",
+          "meaning_kr": "쭈그리고 앉다",
+          "example_en": "to lower your body to the ground by bending your legs",
+          "example_kr": ""
+        },
+        {
+          "word": "wonder - wondered",
+          "pos": "v.",
+          "meaning_kr": "궁금해하다",
+          "example_en": "to think about something with curiosity",
+          "example_kr": ""
+        }
+      ]
+    }
+  ],
   "activeWordsetId": null,
   "progress": {},
-  "pet": { "characterIndex": 0, "stage": "gift", "food": 0, "lastPoopClearedAt": 0, "grownUpAt": null },
+  "pet": {
+    "characterIndex": 0,
+    "stage": "gift",
+    "food": 0,
+    "lastPoopClearedAt": 0,
+    "grownUpAt": null
+  },
   "quizzes": [],
   "mistakes": [],
-  "meta": { "updatedAt": "" }
+  "meta": {
+    "updatedAt": ""
+  }
 }
