@@ -221,15 +221,15 @@
   "activeWordsetId": "mrxcw387tuiho",
   "progress": {
     "mrxcw387tuiho": {
-      "unlockedBatches": 1,
-      "lastCompletedDate": null,
+      "unlockedBatches": 2,
+      "lastCompletedDate": "2026-07-23",
       "memorized": false
     }
   },
   "pet": {
     "characterIndex": 0,
     "stage": "gift",
-    "food": 4,
+    "food": 5,
     "lastPoopClearedAt": 0,
     "grownUpAt": null,
     "_poopPresent": false
