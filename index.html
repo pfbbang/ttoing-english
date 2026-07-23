@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>또잉이 영단어 대작전</title>
+<style>
+  :root{
+    --pink:#ff6fa5; --purple:#7c5cff; --yellow:#ffd166; --green:#06d6a0; --blue:#4cc9f0;
+    --bg:#fff8f2; --card:#ffffff; --ink:#2d2a3a; --muted:#8a8698; --danger:#ff4d6d;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+    background:linear-gradient(180deg,#fff8f2 0%,#fef1e6 100%); color:var(--ink); min-height:100vh;
+  }
+  header{ padding:20px 16px 12px; text-align:center; }
+  header h1{ margin:0; font-size:24px; font-weight:800;
+    background:linear-gradient(90deg,var(--pink),var(--purple)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  header p{ margin:6px 0 0; color:var(--muted); font-size:12.5px; }
+
+  nav{ display:flex; gap:6px; padding:0 12px 12px; overflow-x:auto; justify-content:center; flex-wrap:wrap; }
+  nav button{ border:none; background:#fff; color:var(--muted); padding:10px 14px; border-radius:999px;
+    font-size:13px; font-weight:700; cursor:pointer; box-shadow:0 2px 6px rgba(124,92,255,0.08); white-space:nowrap; }
+  nav button.active{ background:var(--purple); color:#fff; box-shadow:0 4px 12px rgba(124,92,255,0.35); }
+
+  main{ max-width:760px; margin:0 auto; padding:0 14px 70px; }
+  .panel{ display:none; } .panel.active{ display:block; animation:fade .25s ease; }
+  @keyframes fade{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+  @keyframes bounce{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+  @keyframes pop{ 0%{transform:scale(0.8); opacity:0;} 100%{transform:scale(1); opacity:1;} }
+
+  .card{ background:var(--card); border-radius:18px; padding:18px; margin-bottom:16px; box-shadow:0 4px 18px rgba(45,42,58,0.06); }
+  .card h2{ margin:0 0 10px; font-size:17px; }
+  .card h3{ margin:14px 0 8px; font-size:14px; color:var(--purple); }
+  .hint{ font-size:12.5px; color:var(--muted); line-height:1.6; margin:4px 0 12px; }
+
+  label{ display:block; font-size:12.5px; font-weight:700; color:var(--muted); margin:10px 0 4px; }
+  input[type=text], input[type=password], select, textarea{
+    width:100%; padding:10px 12px; border:1.5px solid #eee2ee; border-radius:12px; font-size:14px; background:#fffdfb; color:var(--ink); }
+  input[type=file]{ width:100%; padding:10px; border:2px dashed #f0c6d8; border-radius:12px; background:#fff7fb; font-size:13px; }
+  .btn{ display:inline-flex; align-items:center; gap:6px; border:none; padding:11px 18px; border-radius:14px;
+    font-weight:800; font-size:14px; cursor:pointer; margin-top:10px; transition:transform .1s; }
+  .btn:active{ transform:scale(0.97); }
+  .btn-primary{ background:linear-gradient(90deg,var(--pink),var(--purple)); color:#fff; }
+  .btn-green{ background:var(--green); color:#fff; }
+  .btn-outline{ background:#fff; color:var(--purple); border:1.5px solid var(--purple); }
+  .btn-sm{ padding:6px 12px; font-size:12px; margin-top:0; }
+  .btn-danger{ background:#fff; color:var(--danger); border:1.5px solid var(--danger); }
+  .btn:disabled{ opacity:0.5; cursor:not-allowed; }
+  .btn-huge{ font-size:18px; padding:16px 28px; border-radius:20px; }
+
+  table{ width:100%; border-collapse:collapse; font-size:13px; margin-top:8px; }
+  th,td{ padding:8px 6px; border-bottom:1px solid #f2edf5; text-align:left; vertical-align:top; }
+  th{ color:var(--muted); font-size:11.5px; font-weight:700; }
+  td input{ font-size:13px; padding:6px 8px; border-radius:8px; }
+  .row-actions{ white-space:nowrap; }
+
+  .badge{ display:inline-block; padding:2px 8px; border-radius:999px; font-size:11px; font-weight:800; }
+  .badge-ok{ background:#e2fbf1; color:#0aa376; } .badge-no{ background:#ffe7ec; color:var(--danger); }
+  .badge-active{ background:#eee6ff; color:var(--purple); } .badge-muted{ background:#f2f2f5; color:var(--muted); }
+
+  .status{ font-size:13px; margin-top:10px; padding:10px 12px; border-radius:12px; background:#f4f0ff; color:var(--purple); }
+  .status.error{ background:#ffecef; color:var(--danger); } .status.loading::after{ content:'⏳'; margin-left:4px; }
+
+  .quiz-item{ padding:14px; border:1.5px solid #f3eef8; border-radius:14px; margin-bottom:10px; background:#fffdfc; }
+  .quiz-item .qno{ font-weight:900; color:var(--pink); margin-right:6px; }
+  .quiz-item .qmeta{ float:right; font-size:11px; color:var(--muted); }
+  .quiz-item .qtext{ margin-top:6px; font-size:15px; line-height:1.6; }
+
+  .mnemonic-box{ background:#fff8e1; border-radius:12px; padding:10px 12px; margin-top:6px; font-size:13.5px; line-height:1.6; }
+  .mistake-card{ border-left:5px solid var(--yellow); }
+  .empty{ text-align:center; color:var(--muted); font-size:13px; padding:20px 0; }
+  .setlist-item{ display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #f4f0f5; font-size:13.5px; }
+  .setlist-item .meta{ color:var(--muted); font-size:11.5px; }
+
+  /* pet screen */
+  .pet-stage{ text-align:center; padding:20px 10px 6px; position:relative; }
+  .pet-emoji{ font-size:96px; display:inline-block; animation:bounce 2.4s ease-in-out infinite; }
+  .pet-emoji.happy{ animation:pop .4s ease; }
+  .pet-label{ font-size:13px; color:var(--muted); margin-top:6px; font-weight:700; }
+  .food-bar{ height:14px; border-radius:999px; background:#f2edf5; overflow:hidden; margin:10px 0; }
+  .food-bar-fill{ height:100%; background:linear-gradient(90deg,var(--yellow),var(--pink)); transition:width .4s ease; }
+  .speech-bubble{ background:#fff; border:2px solid var(--purple); border-radius:16px; padding:10px 14px; font-size:13.5px;
+    margin:10px auto; max-width:280px; position:relative; animation:pop .3s ease; }
+  .poop-row{ text-align:center; margin-top:6px; }
+  .poop-emoji{ font-size:34px; }
+  .pet-actions{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:12px; }
+  .toast{ position:fixed; top:14px; left:50%; transform:translateX(-50%); background:var(--ink); color:#fff;
+    padding:10px 18px; border-radius:999px; font-size:13px; z-index:999; animation:pop .3s ease; }
+
+  .lock-screen{ text-align:center; padding:40px 10px; color:var(--muted); }
+  .lock-screen .big{ font-size:48px; }
+
+  .choice-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px; }
+  .choice-btn{ padding:14px 8px; border-radius:14px; border:2px solid #eee2ee; background:#fff; font-size:15px; font-weight:700; cursor:pointer; }
+  .choice-btn.correct{ background:#e2fbf1; border-color:#0aa376; }
+  .choice-btn.wrong{ background:#ffe7ec; border-color:var(--danger); }
+
+  .flash-card{ text-align:center; padding:26px 14px; }
+  .flash-card .fw{ font-size:30px; font-weight:900; color:var(--purple); }
+  .flash-card .fm{ font-size:18px; margin-top:8px; }
+  .flash-card .fe{ font-size:13px; color:var(--muted); margin-top:10px; line-height:1.6; }
+
+  .listen-item{ text-align:center; padding:18px; }
+  .listen-item .spk{ font-size:44px; cursor:pointer; }
+
+  .setup-overlay{ position:fixed; inset:0; background:#fff8f2; z-index:500; overflow-y:auto; }
+  .setup-overlay .card{ max-width:520px; margin:30px auto; }
+
+  @media print{ header,nav,.no-print{ display:none !important; } body{ background:#fff; } }
+</style>
+</head>
+<body>
+
+<div id="setupOverlay" class="setup-overlay" style="display:none;">
+  <header><h1>🌟 또잉이 영단어 대작전 🌟</h1><p>기기 설정을 먼저 해주세요 (한 번만 하면 돼요)</p></header>
+  <div class="card">
+    <h2>1. 이 기기는 누구 것인가요?</h2>
+    <button class="btn btn-primary" id="roleParentBtn" style="width:100%;">👩 부모님(관리자) 기기</button>
+    <button class="btn btn-outline" id="roleChildBtn" style="width:100%;">🧒 또잉이 기기</button>
+  </div>
+  <div class="card">
+    <h2>2. GitHub 데이터 저장소 연결</h2>
+    <p class="hint">두 기기의 진도를 같이 보려면 같은 GitHub 저장소를 데이터 창고로 써요. 부모님 기기와 또잉이 기기에 <b>똑같이</b> 입력해주세요.</p>
+    <label>GitHub 저장소 (owner/repo)</label>
+    <input type="text" id="ghRepo" placeholder="예: suhyun/ttoing-english">
+    <label>브랜치</label>
+    <input type="text" id="ghBranch" placeholder="main" value="main">
+    <label>Personal Access Token (repo 쓰기 권한)</label>
+    <input type="password" id="ghToken" placeholder="github_pat_...">
+  </div>
+  <div class="card">
+    <h2>3. Anthropic API 설정</h2>
+    <p class="hint">사진 속 단어 인식과 손글씨 채점, 암기법 생성에 사용돼요. <a href="https://console.anthropic.com/settings/keys" target="_blank">console.anthropic.com</a>에서 발급받으세요.</p>
+    <label>Anthropic API Key</label>
+    <input type="password" id="apiKey" placeholder="sk-ant-...">
+    <label>모델</label>
+    <select id="modelSelect">
+      <option value="claude-sonnet-5">Claude Sonnet 5 (추천)</option>
+      <option value="claude-opus-4-8">Claude Opus 4.8 (흘림체 손글씨에 더 정확)</option>
+      <option value="claude-haiku-4-5-20251001">Claude Haiku 4.5 (빠르고 저렴)</option>
+    </select>
+  </div>
+  <div class="card">
+    <button class="btn btn-primary btn-huge" id="setupSaveBtn" style="width:100%;">설정 저장하고 시작하기 🚀</button>
+    <div id="setupStatus"></div>
+  </div>
+</div>
+
+<div id="appRoot" style="display:none;">
+<header>
+  <h1 id="appTitle">🌟 또잉이 영단어 대작전 🌟</h1>
+  <p id="appSubtitle">단어장 사진 한 장으로 뒤죽박죽 퀴즈 만들고, 채점도 스르륵!</p>
+</header>
+
+<nav class="no-print" id="mainNav"></nav>
+
+<main>
+  <!-- ============ CHILD: 단어 외우기 (다마고치) ============ -->
+  <section class="panel" id="tab-pet">
+    <div class="card" id="petCard"></div>
+    <div class="card no-print" id="sessionCard"></div>
+  </section>
+
+  <!-- ============ CHILD: 퀴즈 풀기 ============ -->
+  <section class="panel" id="tab-quiz">
+    <div class="card" id="quizLockCard"></div>
+    <div class="card no-print" id="quizPlayCard" style="display:none;"></div>
+    <div class="card no-print" id="quizGradeCard" style="display:none;">
+      <h2>📷 답안 사진 올리기</h2>
+      <p class="hint">공책에 번호대로 쓴 답을 사진 찍어 올려주세요.</p>
+      <input type="file" id="answerImage" accept="image/*" capture="environment">
+      <button class="btn btn-primary" id="gradeBtn">🔍 채점하기</button>
+      <div id="gradeStatus"></div>
+    </div>
+    <div class="card" id="gradeResultCard" style="display:none;">
+      <h2 id="gradeSummary"></h2>
+      <div id="gradeResults"></div>
+    </div>
+  </section>
+
+  <!-- ============ 오답노트 (공통) ============ -->
+  <section class="panel" id="tab-mistakes">
+    <div class="card">
+      <h2>🌟 오답노트</h2>
+      <p class="hint">여러 번 틀린 단어일수록 위에 보여요.</p>
+      <div id="mistakeList"></div>
+    </div>
+  </section>
+
+  <!-- ============ ADMIN: 단어 등록 ============ -->
+  <section class="panel" id="tab-register">
+    <div class="card">
+      <h2>📖 단어장 사진에서 단어 뽑기</h2>
+      <input type="file" id="wordImages" accept="image/*" capture="environment" multiple>
+      <button class="btn btn-primary" id="extractBtn">✨ 사진에서 단어 추출하기</button>
+      <div id="extractStatus"></div>
+    </div>
+    <div class="card" id="extractedCard" style="display:none;">
+      <h2>추출된 단어 (확인하고 고쳐주세요)</h2>
+      <table id="wordTable"><thead><tr><th>영단어</th><th>품사</th><th>한글 뜻</th><th>예문</th><th>예문 해석</th><th></th></tr></thead><tbody></tbody></table>
+      <button class="btn btn-outline btn-sm" id="addRowBtn">+ 행 추가</button>
+      <h3>단어장 이름</h3>
+      <input type="text" id="wordsetName" placeholder="예: Unit 5 - 7월 3주차">
+      <button class="btn btn-green" id="saveWordsetBtn">💾 단어장으로 저장</button>
+      <div id="saveWordsetStatus"></div>
+    </div>
+    <div class="card"><h2>저장된 단어장</h2><div id="wordsetList"></div></div>
+  </section>
+
+  <!-- ============ ADMIN: 진도 현황 ============ -->
+  <section class="panel" id="tab-progress">
+    <div class="card">
+      <h2>📊 또잉이 진도 현황</h2>
+      <button class="btn btn-outline btn-sm no-print" id="refreshProgressBtn">🔄 새로고침</button>
+      <div id="progressView" style="margin-top:14px;"></div>
+    </div>
+  </section>
+
+  <!-- ============ ADMIN: 설정 ============ -->
+  <section class="panel" id="tab-adminsettings">
+    <div class="card">
+      <h2>⚙️ 설정</h2>
+      <label>GitHub 저장소</label><input type="text" id="s_ghRepo">
+      <label>브랜치</label><input type="text" id="s_ghBranch">
+      <label>Personal Access Token</label><input type="password" id="s_ghToken">
+      <label>Anthropic API Key</label><input type="password" id="s_apiKey">
+      <label>모델</label>
+      <select id="s_modelSelect">
+        <option value="claude-sonnet-5">Claude Sonnet 5</option>
+        <option value="claude-opus-4-8">Claude Opus 4.8</option>
+        <option value="claude-haiku-4-5-20251001">Claude Haiku 4.5</option>
+      </select>
+      <button class="btn btn-primary" id="saveAdminSettingsBtn">저장</button>
+      <button class="btn btn-danger btn-sm" id="resetDeviceBtn">기기 설정 초기화</button>
+      <div id="adminSettingsStatus"></div>
+    </div>
+  </section>
+</main>
+</div>
+
+<script>
+(function(){
+  const $ = (id) => document.getElementById(id);
+  const ls = {
+    get(k, def){ try{ const v = localStorage.getItem(k); return v!==null ? JSON.parse(v) : def; }catch(e){ return def; } },
+    set(k, v){ localStorage.setItem(k, JSON.stringify(v)); }
+  };
+  const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2,7);
+  const todayStr = () => new Date().toISOString().slice(0,10);
+  const escapeHtml = (s) => (s==null?'':s.toString()).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const shuffle = (arr)=>{ const a=arr.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
+
+  const ZODIAC_EMOJI = ['🐭','🐮','🐯','🐰','🐲','🐍','🐴','🐑','🐵','🐔','🐶','🐷'];
+  const ZODIAC_NAME  = ['쥐','소','호랑이','토끼','용','뱀','말','양','원숭이','닭','개','돼지'];
+  const BATCH_SIZE = 10;
+  const ENCOURAGE_MSGS = [
+    '우와 정말 잘하고 있어! 오늘도 화이팅! 💪','또잉이는 할 수 있어! 벌써 이만큼 외웠잖아 😊',
+    '천천히 해도 괜찮아, 꾸준히가 최고야! 🌱','실수해도 괜찮아, 그게 진짜 공부야! 📚',
+    '오늘 하루도 애썼어, 정말 대견해 🥰','한 걸음씩 가다보면 어느새 다 외워져 있을 거야! 🐾',
+    '너는 매일 조금씩 더 똑똑해지고 있어! 🧠✨'
+  ];
+
+  // ---------------- Device setup / role ----------------
+  let CFG = ls.get('ttoing_cfg', null); // {role, ghRepo, ghBranch, ghToken, apiKey, model}
+
+  function showSetup(prefill){
+    $('setupOverlay').style.display = 'block';
+    $('appRoot').style.display = 'none';
+    if(prefill){
+      $('ghRepo').value = prefill.ghRepo||''; $('ghBranch').value = prefill.ghBranch||'main';
+      $('ghToken').value = prefill.ghToken||''; $('apiKey').value = prefill.apiKey||'';
+      $('modelSelect').value = prefill.model||'claude-sonnet-5';
+    }
+  }
+  let pendingRole = null;
+  $('roleParentBtn').addEventListener('click', ()=>{ pendingRole='parent';
+    $('roleParentBtn').style.outline='3px solid var(--purple)'; $('roleChildBtn').style.outline='none'; });
+  $('roleChildBtn').addEventListener('click', ()=>{ pendingRole='child';
+    $('roleChildBtn').style.outline='3px solid var(--purple)'; $('roleParentBtn').style.outline='none'; });
+
+  $('setupSaveBtn').addEventListener('click', ()=>{
+    const role = pendingRole || (CFG && CFG.role) || 'child';
+    const repo = $('ghRepo').value.trim();
+    if(!repo || !repo.includes('/')){ $('setupStatus').innerHTML = '<div class="status error">저장소를 owner/repo 형식으로 입력해주세요.</div>'; return; }
+    CFG = {
+      role, ghRepo: repo, ghBranch: $('ghBranch').value.trim()||'main',
+      ghToken: $('ghToken').value.trim(), apiKey: $('apiKey').value.trim(), model: $('modelSelect').value
+    };
+    ls.set('ttoing_cfg', CFG);
+    $('setupStatus').innerHTML = '<div class="status">저장했어요! 시작할게요 🎉</div>';
+    setTimeout(()=>{ boot(); }, 400);
+  });
+
+  $('resetDeviceBtn') && $('resetDeviceBtn').addEventListener('click', ()=>{
+    if(!confirm('이 기기의 설정을 초기화할까요? (저장된 데이터는 GitHub에 그대로 있어요)')) return;
+    localStorage.removeItem('ttoing_cfg');
+    location.reload();
+  });
+
+  // ---------------- GitHub data store ----------------
+  const DATA_PATH = 'data.json';
+  let DB = null; let dbSha = null; let syncTimer = null;
+
+  function ghHeaders(){
+    return { 'Authorization': 'token ' + CFG.ghToken, 'Accept':'application/vnd.github+json', 'Content-Type':'application/json' };
+  }
+  function b64EncodeUnicode(str){ return btoa(unescape(encodeURIComponent(str))); }
+  function b64DecodeUnicode(str){ return decodeURIComponent(escape(atob(str.replace(/\n/g,'')))); }
+
+  function defaultDB(){
+    return {
+      wordsets: [], activeWordsetId: null,
+      progress: {}, // wordsetId -> {unlockedBatches, lastCompletedDate, memorized}
+      pet: { characterIndex:0, stage:'gift', food:0, lastPoopClearedAt: Date.now(), grownUpAt: null },
+      quizzes: [], mistakes: [],
+      meta: { updatedAt: new Date().toISOString() }
+    };
+  }
+
+  async function ghGetDB(){
+    const url = `https://api.github.com/repos/${CFG.ghRepo}/contents/${DATA_PATH}?ref=${encodeURIComponent(CFG.ghBranch)}&t=${Date.now()}`;
+    const res = await fetch(url, { headers: ghHeaders() });
+    if(res.status === 404){ dbSha = null; return defaultDB(); }
+    if(!res.ok){ throw new Error('GitHub 읽기 실패 (상태 '+res.status+')'); }
+    const data = await res.json();
+    dbSha = data.sha;
+    try{ return JSON.parse(b64DecodeUnicode(data.content)); }catch(e){ return defaultDB(); }
+  }
+
+  async function ghPutDB(db, message){
+    const url = `https://api.github.com/repos/${CFG.ghRepo}/contents/${DATA_PATH}`;
+    const body = { message: message||'또잉이 앱 업데이트', content: b64EncodeUnicode(JSON.stringify(db, null, 2)), branch: CFG.ghBranch };
+    if(dbSha) body.sha = dbSha;
+    const res = await fetch(url, { method:'PUT', headers: ghHeaders(), body: JSON.stringify(body) });
+    const data = await res.json();
+    if(!res.ok){
+      if(res.status === 409){ // sha conflict: refetch and retry once
+        const fresh = await ghGetDB(); Object.assign(db, {}); // keep local db content, just refresh sha
+        const retryBody = { message: message||'또잉이 앱 업데이트(재시도)', content: b64EncodeUnicode(JSON.stringify(db,null,2)), branch: CFG.ghBranch, sha: dbSha };
+        const res2 = await fetch(url, { method:'PUT', headers: ghHeaders(), body: JSON.stringify(retryBody) });
+        const data2 = await res2.json();
+        if(!res2.ok) throw new Error('GitHub 저장 실패: ' + (data2.message||res2.status));
+        dbSha = data2.content.sha; return;
+      }
+      throw new Error('GitHub 저장 실패: ' + (data.message||res.status));
+    }
+    dbSha = data.content.sha;
+  }
+
+  function scheduleSync(message){
+    ls.set('ttoing_db_cache', DB);
+    if(syncTimer) clearTimeout(syncTimer);
+    syncTimer = setTimeout(()=>{ ghPutDB(DB, message).catch(err=>{ showToast('⚠️ 저장 실패: '+err.message); }); }, 1200);
+  }
+  function flushSyncNow(message){
+    if(syncTimer) clearTimeout(syncTimer);
+    ls.set('ttoing_db_cache', DB);
+    return ghPutDB(DB, message);
+  }
+
+  function showToast(msg){
+    const t = document.createElement('div'); t.className='toast'; t.textContent = msg;
+    document.body.appendChild(t); setTimeout(()=>t.remove(), 2600);
+  }
+
+  // ---------------- Anthropic API ----------------
+  async function callClaude({system, content, maxTokens=2000}){
+    if(!CFG.apiKey) throw new Error('설정에서 Anthropic API 키를 먼저 입력해주세요.');
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{ 'content-type':'application/json', 'x-api-key': CFG.apiKey, 'anthropic-version':'2023-06-01', 'anthropic-dangerous-direct-browser-access':'true' },
+      body: JSON.stringify({ model: CFG.model||'claude-sonnet-5', max_tokens:maxTokens, system, messages:[{role:'user', content}] })
+    });
+    const data = await res.json();
+    if(!res.ok) throw new Error((data && data.error && data.error.message) || ('API 오류 (상태 '+res.status+')'));
+    return (data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('\n');
+  }
+  function extractJSON(text){
+    let t = text.trim().replace(/^```json/i,'').replace(/^```/,'').replace(/```$/,'').trim();
+    try{ return JSON.parse(t); }catch(e){}
+    const s = Math.min(...[t.indexOf('['), t.indexOf('{')].filter(x=>x>=0));
+    const e = Math.max(t.lastIndexOf(']'), t.lastIndexOf('}'));
+    if(isFinite(s) && e>s){ try{ return JSON.parse(t.slice(s,e+1)); }catch(e2){} }
+    throw new Error('AI 응답을 해석하지 못했어요. 다시 시도해주세요.');
+  }
+  function resizeImageFile(file, maxDim=1500, quality=0.85){
+    return new Promise((resolve, reject)=>{
+      const img = new Image(); const url = URL.createObjectURL(file);
+      img.onload = ()=>{
+        let {width:w, height:h} = img;
+        if(w>maxDim||h>maxDim){ const sc = maxDim/Math.max(w,h); w=Math.round(w*sc); h=Math.round(h*sc); }
+        const c = document.createElement('canvas'); c.width=w; c.height=h;
+        c.getContext('2d').drawImage(img,0,0,w,h);
+        const durl = c.toDataURL('image/jpeg', quality); URL.revokeObjectURL(url);
+        resolve(durl.split(',')[1]);
+      };
+      img.onerror = reject; img.src = url;
+    });
+  }
+  function imageBlock(b64){ return { type:'image', source:{type:'base64', media_type:'image/jpeg', data:b64} }; }
+
+  // ---------------- Nav ----------------
+  const NAV_CHILD = [
+    {tab:'pet', label:'🐣 단어 외우기'}, {tab:'quiz', label:'✏️ 퀴즈 풀기'}, {tab:'mistakes', label:'🌟 오답노트'}
+  ];
+  const NAV_PARENT = [
+    {tab:'register', label:'📖 단어 등록'}, {tab:'progress', label:'📊 진도 현황'},
+    {tab:'mistakes', label:'🌟 오답 현황'}, {tab:'adminsettings', label:'⚙️ 설정'}
+  ];
+  function buildNav(){
+    const items = CFG.role==='parent' ? NAV_PARENT : NAV_CHILD;
+    $('mainNav').innerHTML = items.map((it,i)=>`<button data-tab="${it.tab}" class="${i===0?'active':''}">${it.label}</button>`).join('');
+    document.querySelectorAll('#mainNav button').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        document.querySelectorAll('#mainNav button').forEach(b=>b.classList.remove('active'));
+        document.querySelectorAll('main .panel').forEach(p=>p.classList.remove('active'));
+        btn.classList.add('active'); $('tab-'+btn.dataset.tab).classList.add('active');
+        if(btn.dataset.tab==='pet') renderPetTab();
+        if(btn.dataset.tab==='quiz') renderQuizTab();
+        if(btn.dataset.tab==='mistakes') renderMistakesTab();
+        if(btn.dataset.tab==='progress') renderProgressTab();
+      });
+    });
+    const items0 = items[0].tab;
+    document.querySelectorAll('main .panel').forEach(p=>p.classList.remove('active'));
+    $('tab-'+items0).classList.add('active');
+    if(items0==='pet') renderPetTab(); if(items0==='register') {}
+  }
+
+  // =========================================================
+  // WORD SETS (registration) — admin only
+  // =========================================================
+  let extractedWords = [];
+  function renderWordTable(){
+    const tbody = document.querySelector('#wordTable tbody'); tbody.innerHTML='';
+    extractedWords.forEach((w,i)=>{
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td><input type="text" data-i="${i}" data-f="word" value="${escapeHtml(w.word)}"></td>
+        <td><input type="text" data-i="${i}" data-f="pos" value="${escapeHtml(w.pos)}" style="width:60px"></td>
+        <td><input type="text" data-i="${i}" data-f="meaning_kr" value="${escapeHtml(w.meaning_kr)}"></td>
+        <td><input type="text" data-i="${i}" data-f="example_en" value="${escapeHtml(w.example_en)}"></td>
+        <td><input type="text" data-i="${i}" data-f="example_kr" value="${escapeHtml(w.example_kr)}"></td>
+        <td><button class="btn btn-danger btn-sm" data-del="${i}">삭제</button></td>`;
+      tbody.appendChild(tr);
+    });
+    tbody.querySelectorAll('input').forEach(inp=>inp.addEventListener('input', e=>{ extractedWords[+e.target.dataset.i][e.target.dataset.f]=e.target.value; }));
+    tbody.querySelectorAll('[data-del]').forEach(btn=>btn.addEventListener('click', ()=>{ extractedWords.splice(+btn.dataset.del,1); renderWordTable(); }));
+    $('extractedCard').style.display = extractedWords.length ? 'block' : 'none';
+  }
+  $('addRowBtn') && $('addRowBtn').addEventListener('click', ()=>{ extractedWords.push({word:'',pos:'',meaning_kr:'',example_en:'',example_kr:''}); renderWordTable(); });
+
+  $('extractBtn') && $('extractBtn').addEventListener('click', async ()=>{
+    const files = $('wordImages').files;
+    if(!files.length){ $('extractStatus').innerHTML='<div class="status error">사진을 먼저 선택해주세요.</div>'; return; }
+    $('extractStatus').innerHTML='<div class="status loading">단어를 읽고 있어요</div>'; $('extractBtn').disabled=true;
+    try{
+      const content=[]; for(const f of files){ content.push(imageBlock(await resizeImageFile(f))); }
+      content.push({type:'text', text:
+        '이 사진들은 초등학생 영어 단어장 페이지입니다. 보이는 모든 단어 항목을 JSON 배열로만 추출하세요.\n'+
+        '각 항목: {"word":"영어단어","pos":"품사(짧게)","meaning_kr":"한글 뜻","example_en":"예문(없으면 빈문자열)","example_kr":"예문 해석(없으면 빈문자열)"}\n'+
+        '설명 없이 JSON 배열만 출력. 중복 단어는 한 번만.'});
+      const text = await callClaude({ system:'너는 정확한 데이터 추출기다. 항상 유효한 JSON만 출력한다.', content, maxTokens:4000 });
+      extractedWords = extractJSON(text).map(w=>({word:w.word||'',pos:w.pos||'',meaning_kr:w.meaning_kr||'',example_en:w.example_en||'',example_kr:w.example_kr||''}));
+      renderWordTable();
+      $('extractStatus').innerHTML = `<div class="status">${extractedWords.length}개 단어를 찾았어요! 확인하고 고쳐주세요. ✏️</div>`;
+    }catch(err){ $('extractStatus').innerHTML = `<div class="status error">${escapeHtml(err.message)}</div>`; }
+    finally{ $('extractBtn').disabled=false; }
+  });
+
+  $('saveWordsetBtn') && $('saveWordsetBtn').addEventListener('click', ()=>{
+    const name = $('wordsetName').value.trim();
+    if(!name){ $('saveWordsetStatus').innerHTML='<div class="status error">단어장 이름을 입력해주세요.</div>'; return; }
+    if(!extractedWords.length){ $('saveWordsetStatus').innerHTML='<div class="status error">저장할 단어가 없어요.</div>'; return; }
+    const set = { id:uid(), name, createdAt:new Date().toISOString(), words: JSON.parse(JSON.stringify(extractedWords)) };
+    DB.wordsets.unshift(set);
+    $('saveWordsetStatus').innerHTML='<div class="status">저장 완료! 아래 목록에서 "활성화"를 누르면 또잉이가 학습할 수 있어요. 🎉</div>';
+    renderWordsetList(); scheduleSync('단어장 추가: '+name);
+  });
+
+  function renderWordsetList(){
+    const el = $('wordsetList'); if(!el) return;
+    if(!DB.wordsets.length){ el.innerHTML='<div class="empty">아직 저장된 단어장이 없어요.</div>'; return; }
+    el.innerHTML = DB.wordsets.map(s=>{
+      const active = DB.activeWordsetId===s.id;
+      return `<div class="setlist-item">
+        <div><b>${escapeHtml(s.name)}</b> ${active?'<span class="badge badge-active">학습중</span>':''}<br>
+        <span class="meta">단어 ${s.words.length}개 · ${new Date(s.createdAt).toLocaleDateString('ko-KR')}</span></div>
+        <div>
+          ${active?'':'<button class="btn btn-outline btn-sm" data-activate="'+s.id+'">활성화</button>'}
+          <button class="btn btn-danger btn-sm" data-delset="${s.id}">삭제</button>
+        </div>
+      </div>`;
+    }).join('');
+    el.querySelectorAll('[data-activate]').forEach(btn=>btn.addEventListener('click', ()=>{
+      DB.activeWordsetId = btn.dataset.activate;
+      if(!DB.progress[btn.dataset.activate]) DB.progress[btn.dataset.activate] = { unlockedBatches:1, lastCompletedDate:null, memorized:false };
+      renderWordsetList(); scheduleSync('학습 세트 활성화'); showToast('또잉이의 새 학습 세트가 활성화됐어요! 🎯');
+    }));
+    el.querySelectorAll('[data-delset]').forEach(btn=>btn.addEventListener('click', ()=>{
+      if(!confirm('이 단어장을 삭제할까요?')) return;
+      DB.wordsets = DB.wordsets.filter(s=>s.id!==btn.dataset.delset);
+      if(DB.activeWordsetId===btn.dataset.delset) DB.activeWordsetId=null;
+      renderWordsetList(); scheduleSync('단어장 삭제');
+    }));
+  }
+
+  // =========================================================
+  // PROGRESS (admin)
+  // =========================================================
+  function totalBatches(set){ return Math.ceil(set.words.length / BATCH_SIZE); }
+  function renderProgressTab(){
+    const el = $('progressView'); if(!el) return;
+    const set = DB.wordsets.find(s=>s.id===DB.activeWordsetId);
+    if(!set){ el.innerHTML = '<div class="empty">아직 활성화된 학습 세트가 없어요. 단어 등록 탭에서 활성화해주세요.</div>'; return; }
+    const prog = DB.progress[set.id] || {unlockedBatches:1, lastCompletedDate:null, memorized:false};
+    const tb = totalBatches(set);
+    const pet = DB.pet;
+    const introducedCount = Math.min(prog.unlockedBatches - (prog.lastCompletedDate ? 0:0), tb) * 0; // placeholder unused
+    const introducedBatches = prog.memorized ? tb : Math.max(0, prog.unlockedBatches-1) + (prog.lastCompletedDate===todayStr()?1:0);
+    let html = `<h3>📘 ${escapeHtml(set.name)}</h3>
+      <p class="hint">진행: Day ${Math.min(prog.unlockedBatches, tb)} / ${tb} ${prog.memorized?'· <b>단어 30개(전체) 암기 완료! 퀴즈 탭이 열렸어요 🎉</b>':''}</p>
+      <h3>🐣 다마고치 상태</h3>
+      <p class="hint">캐릭터: ${ZODIAC_EMOJI[pet.characterIndex]} ${ZODIAC_NAME[pet.characterIndex]} · 단계: ${pet.stage==='gift'?'선물상자(부화 전)':pet.stage==='baby'?'아기':'다 큼'} · 밥: ${pet.food}개</p>
+      <h3>단어별 현황</h3>
+      <table><thead><tr><th>#</th><th>단어</th><th>뜻</th><th>Day</th><th>상태</th><th>오답기록</th></tr></thead><tbody>`;
+    set.words.forEach((w,i)=>{
+      const batch = Math.floor(i/BATCH_SIZE)+1;
+      const introduced = prog.memorized || batch <= (prog.unlockedBatches-1) || (batch===prog.unlockedBatches && prog.lastCompletedDate===todayStr());
+      const mistake = DB.mistakes.find(m=>m.word.toLowerCase()===w.word.toLowerCase());
+      html += `<tr><td>${i+1}</td><td>${escapeHtml(w.word)}</td><td>${escapeHtml(w.meaning_kr)}</td><td>Day ${batch}</td>
+        <td>${introduced?'<span class="badge badge-ok">학습함</span>':'<span class="badge badge-muted">예정</span>'}</td>
+        <td>${mistake? `<span class="badge badge-no">${mistake.missCount}회</span>` : '-'}</td></tr>`;
+    });
+    html += '</tbody></table>';
+    el.innerHTML = html;
+  }
+  $('refreshProgressBtn') && $('refreshProgressBtn').addEventListener('click', async ()=>{
+    $('refreshProgressBtn').disabled=true;
+    try{ DB = await ghGetDB(); renderProgressTab(); showToast('새로고침했어요 🔄'); }
+    catch(e){ showToast('새로고침 실패: '+e.message); }
+    finally{ $('refreshProgressBtn').disabled=false; }
+  });
+
+  // =========================================================
+  // ADMIN SETTINGS
+  // =========================================================
+  function fillAdminSettings(){
+    if(!$('s_ghRepo')) return;
+    $('s_ghRepo').value = CFG.ghRepo||''; $('s_ghBranch').value = CFG.ghBranch||'main';
+    $('s_ghToken').value = CFG.ghToken||''; $('s_apiKey').value = CFG.apiKey||''; $('s_modelSelect').value = CFG.model||'claude-sonnet-5';
+  }
+  $('saveAdminSettingsBtn') && $('saveAdminSettingsBtn').addEventListener('click', ()=>{
+    CFG.ghRepo = $('s_ghRepo').value.trim(); CFG.ghBranch = $('s_ghBranch').value.trim()||'main';
+    CFG.ghToken = $('s_ghToken').value.trim(); CFG.apiKey = $('s_apiKey').value.trim(); CFG.model = $('s_modelSelect').value;
+    ls.set('ttoing_cfg', CFG);
+    $('adminSettingsStatus').innerHTML = '<div class="status">저장했어요! ✅</div>';
+  });
+
+  // =========================================================
+  // QUIZ GENERATION (shared logic)
+  // =========================================================
+  function makeQuizItems(words, mode){
+    return shuffle(words.map(w=>{
+      const types = mode==='listen' ? ['A','B','C'] : ['A','B'];
+      let avail = types.slice();
+      if(!(w.example_en && w.example_en.toLowerCase().includes((w.word||'').toLowerCase()))) avail = avail.filter(t=>t!=='B');
+      const type = avail[Math.floor(Math.random()*avail.length)];
+      return { word:w.word, meaning_kr:w.meaning_kr, example_en:w.example_en, example_kr:w.example_kr, type, answer:w.word, meaningAnswer:w.meaning_kr };
+    })).map((it,i)=>({ no:i+1, ...it }));
+  }
+
+  // =========================================================
+  // CHILD TAB 1: 단어 외우기 + 다마고치
+  // =========================================================
+  let sessionState = null; // {queue:[{word,meaning_kr,...}], idx, correctCount, phase:'learn'|'quiz'}
+
+  function petStageInfo(){
+    const p = DB.pet;
+    if(p.stage==='gift') return { icon:'🎁', label:'선물상자 (밥을 주면 부화해요!)' };
+    if(p.stage==='baby') return { icon:ZODIAC_EMOJI[p.characterIndex], label:ZODIAC_NAME[p.characterIndex]+' 아기 (밥을 더 주면 다 자라요!)' };
+    return { icon:ZODIAC_EMOJI[p.characterIndex], label:ZODIAC_NAME[p.characterIndex]+' 다 컸어요! 🎉' };
+  }
+
+  function checkPetTimeEvents(){
+    const p = DB.pet; const now = Date.now();
+    if(p.stage==='adult' && p.grownUpAt && (now - p.grownUpAt) >= 24*3600*1000){
+      p.characterIndex = (p.characterIndex+1) % ZODIAC_EMOJI.length;
+      p.stage='gift'; p.food=0; p.grownUpAt=null;
+      showToast('짜잔! 새로운 친구가 선물상자에서 기다리고 있어요! 🎁');
+      scheduleSync('새 캐릭터 등장');
+    }
+    const hrsSincePoop = (now - (p.lastPoopClearedAt||now)) / 3600000;
+    p._poopPresent = hrsSincePoop >= 5;
+  }
+
+  function renderPetCard(happy){
+    const info = petStageInfo(); const p = DB.pet;
+    const foodNeeded = p.stage==='gift' ? 10 : p.stage==='baby' ? 20 : 20;
+    const pct = Math.min(100, Math.round((p.food/foodNeeded)*100));
+    let html = `<div class="pet-stage">
+      <div class="pet-emoji${happy?' happy':''}">${info.icon}</div>
+      <div class="pet-label">${info.label}</div>
+      <div class="food-bar"><div class="food-bar-fill" style="width:${pct}%"></div></div>
+      <div class="hint">밥 ${p.food}개 / ${p.stage==='adult'?'다 컸어요':foodNeeded+'개'}</div>`;
+    if(p._poopPresent){
+      html += `<div class="poop-row"><span class="poop-emoji">💩</span><br><button class="btn btn-outline btn-sm" id="cleanPoopBtn">응가 치우기</button></div>`;
+    }
+    html += `<div class="pet-actions"><button class="btn btn-outline btn-sm" id="petStrokeBtn">🤗 쓰다듬어주기</button></div>
+      <div id="petSpeech"></div></div>`;
+    $('petCard').innerHTML = html;
+    const cleanBtn = $('cleanPoopBtn');
+    if(cleanBtn) cleanBtn.addEventListener('click', ()=>{
+      DB.pet.lastPoopClearedAt = Date.now(); DB.pet._poopPresent=false;
+      renderPetCard(true); $('petSpeech').innerHTML = `<div class="speech-bubble">깨끗해졌다! 고마워 히히 😆</div>`;
+      scheduleSync('응가 치우기');
+    });
+    $('petStrokeBtn').addEventListener('click', ()=>{
+      const msg = ENCOURAGE_MSGS[Math.floor(Math.random()*ENCOURAGE_MSGS.length)];
+      $('petSpeech').innerHTML = `<div class="speech-bubble">${escapeHtml(msg)}</div>`;
+    });
+  }
+
+  function addFood(n){
+    const p = DB.pet; p.food += n;
+    if(p.stage==='gift' && p.food>=10){ p.stage='baby'; showToast('알을 깨고 나왔어요! 안녕 '+ZODIAC_NAME[p.characterIndex]+'! 🐣'); }
+    else if(p.stage==='baby' && p.food>=20){ p.stage='adult'; p.grownUpAt = Date.now(); showToast(ZODIAC_NAME[p.characterIndex]+'가 다 컸어요! 🎉'); }
+    renderPetCard(true);
+    scheduleSync('밥 획득');
+  }
+
+  function buildTodaySession(){
+    const set = DB.wordsets.find(s=>s.id===DB.activeWordsetId);
+    if(!set) return null;
+    const prog = DB.progress[set.id] || (DB.progress[set.id] = {unlockedBatches:1, lastCompletedDate:null, memorized:false});
+    const tb = totalBatches(set);
+    if(prog.memorized) return { done:true, set, prog };
+    if(prog.lastCompletedDate === todayStr()) return { finishedToday:true, set, prog };
+    const currentBatch = Math.min(prog.unlockedBatches, tb);
+    const wordsUpTo = set.words.slice(0, currentBatch*BATCH_SIZE);
+    return { set, prog, currentBatch, tb, words: wordsUpTo };
+  }
+
+  function renderSessionCard(){
+    const info = buildTodaySession();
+    const el = $('sessionCard');
+    if(!info){ el.innerHTML = '<div class="empty">아직 부모님이 학습할 단어장을 선택하지 않았어요. 부모님께 말씀드려보세요! 👨‍👩‍👧</div>'; return; }
+    if(info.done){ el.innerHTML = `<div class="empty">🎉 <b>${escapeHtml(info.set.name)}</b> 단어를 모두 외웠어요! "퀴즈 풀기" 탭에서 실력을 확인해보세요.</div>`; return; }
+    if(info.finishedToday){ el.innerHTML = `<div class="empty">오늘 학습은 끝났어요! 내일 Day ${info.prog.unlockedBatches+1}으로 또 만나요 👋<br><button class="btn btn-outline btn-sm" id="replayBtn" style="margin-top:10px;">그래도 한번 더 복습하기</button></div>`;
+      $('replayBtn').addEventListener('click', ()=>startSession(true)); return; }
+    el.innerHTML = `<h2>📚 Day ${info.currentBatch} 학습</h2><p class="hint">새 단어 ${Math.min(BATCH_SIZE, info.words.length-(info.currentBatch-1)*BATCH_SIZE)}개 + 복습 단어 포함, 총 ${info.words.length}개예요.</p>
+      <button class="btn btn-primary btn-huge" id="startSessionBtn" style="width:100%;">오늘 학습 시작하기 🚀</button>`;
+    $('startSessionBtn').addEventListener('click', ()=>startSession(false));
+  }
+
+  function startSession(isReplay){
+    const info = buildTodaySession();
+    const words = shuffle(info.words);
+    sessionState = { info, queue: words.slice(), idx:0, correctCount:0, phase:'learn', isReplay };
+    renderSessionStep();
+  }
+
+  function renderSessionStep(){
+    const el = $('sessionCard'); const st = sessionState;
+    if(st.phase==='learn'){
+      if(st.idx >= st.queue.length){ st.phase='quiz'; st.quizQueue = shuffle(st.queue.slice()); st.idx=0; renderSessionStep(); return; }
+      const w = st.queue[st.idx];
+      el.innerHTML = `<div class="flash-card"><div class="fw">${escapeHtml(w.word)}</div><div class="fm">${escapeHtml(w.meaning_kr)}</div>
+        ${w.example_en? `<div class="fe">${escapeHtml(w.example_en)}<br>${escapeHtml(w.example_kr||'')}</div>`:''}
+        <button class="btn btn-primary" id="nextCardBtn" style="margin-top:16px;">다음 →</button></div>
+        <p class="hint" style="text-align:center;">${st.idx+1} / ${st.queue.length} 단어 익히는 중</p>`;
+      $('nextCardBtn').addEventListener('click', ()=>{ st.idx++; renderSessionStep(); });
+      return;
+    }
+    // quiz phase
+    if(st.idx >= st.quizQueue.length){
+      // session complete
+      if(!st.isReplay){
+        const prog = st.info.prog;
+        prog.lastCompletedDate = todayStr();
+        if(st.info.currentBatch >= st.info.tb) prog.memorized = true;
+        else prog.unlockedBatches = Math.max(prog.unlockedBatches, st.info.currentBatch+1);
+        scheduleSync('학습 세션 완료');
+      }
+      el.innerHTML = `<div class="empty">🎉 오늘 학습 완료! 정말 잘했어요!</div>`;
+      renderPetCard(true); sessionState=null; return;
+    }
+    const w = st.quizQueue[st.idx];
+    const pool = shuffle((DB.wordsets.find(s=>s.id===DB.activeWordsetId).words).filter(x=>x.word.toLowerCase()!==w.word.toLowerCase())).slice(0,3);
+    const options = shuffle([w.word, ...pool.map(p=>p.word)]);
+    el.innerHTML = `<h2>${escapeHtml(w.meaning_kr)}</h2><p class="hint">뜻에 맞는 영어 단어를 골라보세요</p>
+      <div class="choice-grid">${options.map(o=>`<button class="choice-btn" data-opt="${escapeHtml(o)}">${escapeHtml(o)}</button>`).join('')}</div>
+      <p class="hint" style="text-align:center; margin-top:10px;">${st.idx+1} / ${st.quizQueue.length}</p>`;
+    document.querySelectorAll('.choice-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        document.querySelectorAll('.choice-btn').forEach(b=>b.disabled=true);
+        const correct = btn.dataset.opt.toLowerCase() === w.word.toLowerCase();
+        btn.classList.add(correct?'correct':'wrong');
+        if(!correct){
+          document.querySelectorAll('.choice-btn').forEach(b=>{ if(b.dataset.opt.toLowerCase()===w.word.toLowerCase()) b.classList.add('correct'); });
+          st.quizQueue.push(w); // requeue for another try
+        } else {
+          st.correctCount++;
+          if(st.correctCount % 2 === 0) addFood(1);
+        }
+        setTimeout(()=>{ st.idx++; renderSessionStep(); }, 700);
+      });
+    });
+  }
+
+  function renderPetTab(){
+    checkPetTimeEvents(); renderPetCard(false);
+    if(!sessionState) renderSessionCard();
+  }
+
+  // =========================================================
+  // CHILD TAB 2: 퀴즈 풀기 (듣기 받아쓰기)
+  // =========================================================
+  function speak(text, lang){
+    try{
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text); u.lang = lang; u.rate = 0.95;
+      window.speechSynthesis.speak(u);
+    }catch(e){}
+  }
+
+  function renderQuizTab(){
+    const set = DB.wordsets.find(s=>s.id===DB.activeWordsetId);
+    const prog = set ? (DB.progress[set.id]||{}) : {};
+    if(!set || !prog.memorized){
+      $('quizLockCard').innerHTML = `<div class="lock-screen"><div class="big">🔒</div><p>"단어 외우기" 탭에서 30개 단어를 다 외우면 열려요!</p></div>`;
+      $('quizPlayCard').style.display='none'; $('quizGradeCard').style.display='none'; $('gradeResultCard').style.display='none';
+      return;
+    }
+    $('quizLockCard').innerHTML = '';
+    let quiz = DB.quizzes.find(q=>q.wordsetId===set.id && q.status==='open');
+    if(!quiz){
+      quiz = { id:uid(), wordsetId:set.id, title:`${set.name} 듣기 퀴즈 (${new Date().toLocaleDateString('ko-KR')})`,
+        createdAt:new Date().toISOString(), items: makeQuizItems(set.words, 'listen'), status:'open' };
+      DB.quizzes.unshift(quiz); scheduleSync('듣기 퀴즈 생성');
+    }
+    renderListenPlayer(quiz);
+    $('quizGradeCard').style.display='block';
+    $('quizGradeCard').dataset.quizId = quiz.id;
+  }
+
+  function renderListenPlayer(quiz){
+    const el = $('quizPlayCard'); el.style.display='block';
+    el.innerHTML = `<h2>🔊 듣기 문제 (${quiz.items.length}문제)</h2>
+      <p class="hint">번호 순서대로 듣고, 공책에 번호를 적고 답을 써보세요. 다 들었으면 아래에서 답안 사진을 올려주세요.</p>
+      <div id="listenList"></div>`;
+    const list = $('listenList');
+    list.innerHTML = quiz.items.map(it=>{
+      const showText = it.type==='C' ? escapeHtml(it.meaning_kr) : '🔊 소리로만 듣기';
+      return `<div class="listen-item"><div class="qmeta" style="float:none;">${it.no}번 · ${it.type==='A'?'단어 듣기':it.type==='B'?'문장 듣고 단어 쓰기':'뜻 듣고 단어 쓰기'}</div>
+        <div class="spk" data-no="${it.no}">🔊</div><div class="hint">${showText}</div></div>`;
+    }).join('');
+    list.querySelectorAll('.spk').forEach(elm=>{
+      elm.addEventListener('click', ()=>{
+        const it = quiz.items.find(x=>x.no===+elm.dataset.no);
+        if(it.type==='A') speak(it.word, 'en-US');
+        else if(it.type==='B') speak(it.example_en, 'en-US');
+        else speak(it.meaning_kr, 'ko-KR');
+      });
+    });
+  }
+
+  $('gradeBtn') && $('gradeBtn').addEventListener('click', async ()=>{
+    const quizId = $('quizGradeCard').dataset.quizId;
+    const quiz = DB.quizzes.find(q=>q.id===quizId);
+    const file = $('answerImage').files[0];
+    if(!quiz){ $('gradeStatus').innerHTML='<div class="status error">퀴즈 정보를 찾을 수 없어요.</div>'; return; }
+    if(!file){ $('gradeStatus').innerHTML='<div class="status error">답안 사진을 선택해주세요.</div>'; return; }
+    $('gradeStatus').innerHTML='<div class="status loading">손글씨를 읽고 채점하고 있어요</div>'; $('gradeBtn').disabled=true;
+    try{
+      const b64 = await resizeImageFile(file);
+      const expectedList = quiz.items.map(it=>`${it.no}번 [${it.type==='A'?'단어 듣고 쓰기':it.type==='B'?'문장 듣고 단어 쓰기':'뜻 듣고 단어 쓰기'}] 정답: ${it.answer}`).join('\n');
+      const content = [ imageBlock(b64), { type:'text', text:
+        '이 사진은 초등학생이 영어 듣기 받아쓰기 퀴즈 답을 공책에 번호를 매겨 손글씨로 쓴 것입니다.\n'+
+        '문제 번호별 정답:\n'+expectedList+'\n\n'+
+        '사진 속 손글씨 답을 번호별로 읽고 채점하세요. 이것은 철자 시험이므로 대소문자만 무시하고 철자는 정확히 일치해야 정답입니다.\n'+
+        '글씨를 알아볼 수 없거나 비어있으면 오답으로, recognized는 "(판독불가)" 또는 "(공백)"으로 표시하세요.\n'+
+        '오답인 경우에만 mnemonic 필드에 재미있는 한국어 발음연상 암기법을 만들어주세요. 초등 5학년 눈높이로, 단어 발음과 비슷한 한국어 표현을 엮어 2문장 이내로 짧고 재미있게.\n'+
+        '예시: nervous(널v어스) → "널 봐서(비슷한 발음) 두려운 마음이 nervous야! 너를 보면 왜 이렇게 긴장될까? 😳"\n'+
+        '정답인 경우 mnemonic은 null.\n\n'+
+        'JSON 배열만 출력: [{"no":1,"expected":"정답","recognized":"읽은 답","correct":true,"note":"짧은 코멘트","mnemonic":null}, ...]'
+      }];
+      const text = await callClaude({ system:'너는 꼼꼼하지만 다정한 초등학교 선생님이다. 항상 유효한 JSON만 출력한다.', content, maxTokens:4000 });
+      const results = extractJSON(text);
+      renderGradeResults(quiz, results);
+      quiz.status = 'graded';
+      results.filter(r=>!r.correct).forEach(r=>{
+        const qi = quiz.items.find(it=>it.no===r.no) || {};
+        const existing = DB.mistakes.find(m=>m.word.toLowerCase()===(qi.word||'').toLowerCase());
+        if(existing){ existing.missCount=(existing.missCount||1)+1; existing.lastMissedAt=new Date().toISOString(); if(r.mnemonic) existing.mnemonic=r.mnemonic; }
+        else DB.mistakes.push({ word:qi.word||'', meaning_kr:qi.meaning_kr||'', example_en:qi.example_en||'', example_kr:qi.example_kr||'', mnemonic:r.mnemonic||'', missCount:1, lastMissedAt:new Date().toISOString() });
+      });
+      flushSyncNow('퀴즈 채점 및 오답노트 갱신').catch(()=>{});
+      $('gradeStatus').innerHTML = '<div class="status">채점 완료! 오답노트에 자동 저장했어요 🌟</div>';
+    }catch(err){ $('gradeStatus').innerHTML = `<div class="status error">${escapeHtml(err.message)}</div>`; }
+    finally{ $('gradeBtn').disabled=false; }
+  });
+
+  function renderGradeResults(quiz, results){
+    const total = results.length; const correct = results.filter(r=>r.correct).length;
+    $('gradeSummary').textContent = `${correct} / ${total} 정답 (${Math.round(correct/total*100)}점)`;
+    $('gradeResults').innerHTML = results.map(r=>`
+      <div class="quiz-item ${r.correct?'':'mistake-card'}">
+        <span class="qmeta"><span class="badge ${r.correct?'badge-ok':'badge-no'}">${r.correct?'정답':'오답'}</span></span>
+        <div class="qtext"><span class="qno">${r.no}.</span>정답: <b>${escapeHtml(r.expected)}</b></div>
+        <div class="hint">인식한 답: ${escapeHtml(r.recognized||'')} ${r.note?' · '+escapeHtml(r.note):''}</div>
+        ${r.mnemonic?`<div class="mnemonic-box">💡 ${escapeHtml(r.mnemonic)}</div>`:''}
+      </div>`).join('');
+    $('gradeResultCard').style.display='block';
+  }
+
+  // =========================================================
+  // MISTAKES TAB (shared)
+  // =========================================================
+  function renderMistakesTab(){
+    const el = $('mistakeList'); if(!el) return;
+    const mistakes = DB.mistakes.slice().sort((a,b)=>(b.missCount||0)-(a.missCount||0));
+    if(!mistakes.length){ el.innerHTML = '<div class="empty">아직 오답노트가 비어있어요!</div>'; return; }
+    const isParent = CFG.role==='parent';
+    el.innerHTML = mistakes.map(m=>`
+      <div class="quiz-item mistake-card">
+        <span class="qmeta">${m.missCount||1}번 틀림</span>
+        <div class="qtext"><b>${escapeHtml(m.word)}</b> — ${escapeHtml(m.meaning_kr)}</div>
+        ${m.mnemonic?`<div class="mnemonic-box">💡 ${escapeHtml(m.mnemonic)}</div>`:''}
+        ${isParent?`<button class="btn btn-danger btn-sm" style="margin-top:8px;" data-delm="${escapeHtml(m.word)}">삭제</button>`:''}
+      </div>`).join('');
+    el.querySelectorAll('[data-delm]').forEach(btn=>btn.addEventListener('click', ()=>{
+      DB.mistakes = DB.mistakes.filter(m=>m.word!==btn.dataset.delm); renderMistakesTab(); scheduleSync('오답노트 항목 삭제');
+    }));
+  }
+
+  // ---------------- boot ----------------
+  async function boot(){
+    CFG = ls.get('ttoing_cfg', null);
+    if(!CFG || !CFG.ghRepo){ showSetup(CFG); return; }
+    $('setupOverlay').style.display='none'; $('appRoot').style.display='block';
+    try{ DB = await ghGetDB(); }
+    catch(e){ DB = ls.get('ttoing_db_cache', null) || defaultDB(); showToast('⚠️ GitHub 연결 실패, 임시 저장본을 보여드려요'); }
+    buildNav();
+    renderWordsetList(); renderProgressTab(); renderMistakesTab();
+    fillAdminSettings();
+    setInterval(()=>{ if(CFG.role!=='parent') checkPetTimeEvents(); }, 60000);
+  }
+  boot();
+})();
+</script>
+</body>
+</html>

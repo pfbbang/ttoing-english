@@ -1,0 +1,9 @@
+{
+  "wordsets": [],
+  "activeWordsetId": null,
+  "progress": {},
+  "pet": { "characterIndex": 0, "stage": "gift", "food": 0, "lastPoopClearedAt": 0, "grownUpAt": null },
+  "quizzes": [],
+  "mistakes": [],
+  "meta": { "updatedAt": "" }
+}
