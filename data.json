@@ -229,9 +229,10 @@
   "pet": {
     "characterIndex": 0,
     "stage": "gift",
-    "food": 0,
+    "food": 1,
     "lastPoopClearedAt": 0,
-    "grownUpAt": null
+    "grownUpAt": null,
+    "_poopPresent": false
   },
   "quizzes": [],
   "mistakes": [],
