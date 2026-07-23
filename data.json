@@ -218,8 +218,14 @@
       ]
     }
   ],
-  "activeWordsetId": null,
-  "progress": {},
+  "activeWordsetId": "mrxcw387tuiho",
+  "progress": {
+    "mrxcw387tuiho": {
+      "unlockedBatches": 1,
+      "lastCompletedDate": null,
+      "memorized": false
+    }
+  },
   "pet": {
     "characterIndex": 0,
     "stage": "gift",
