@@ -229,7 +229,7 @@
   "pet": {
     "characterIndex": 0,
     "stage": "gift",
-    "food": 7,
+    "food": 8,
     "lastPoopClearedAt": 0,
     "grownUpAt": null,
     "_poopPresent": false
