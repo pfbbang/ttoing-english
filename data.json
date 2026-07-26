@@ -222,14 +222,14 @@
   "progress": {
     "mrxcw387tuiho": {
       "unlockedBatches": 3,
-      "lastCompletedDate": "2026-07-24",
-      "memorized": false
+      "lastCompletedDate": "2026-07-26",
+      "memorized": true
     }
   },
   "pet": {
     "characterIndex": 0,
     "stage": "adult",
-    "food": 29,
+    "food": 30,
     "lastPoopClearedAt": 0,
     "grownUpAt": 1785040677486,
     "_poopPresent": false
