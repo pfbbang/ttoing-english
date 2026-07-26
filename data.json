@@ -229,7 +229,7 @@
   "pet": {
     "characterIndex": 0,
     "stage": "adult",
-    "food": 22,
+    "food": 23,
     "lastPoopClearedAt": 0,
     "grownUpAt": 1785040677486,
     "_poopPresent": false
