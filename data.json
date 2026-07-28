@@ -227,11 +227,11 @@
     }
   },
   "pet": {
-    "characterIndex": 0,
-    "stage": "adult",
-    "food": 30,
+    "characterIndex": 1,
+    "stage": "gift",
+    "food": 0,
     "lastPoopClearedAt": 0,
-    "grownUpAt": 1785040677486,
+    "grownUpAt": null,
     "_poopPresent": false
   },
   "quizzes": [],
