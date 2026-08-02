@@ -542,7 +542,7 @@
           "meaningAnswer": "(소리 없이) 활짝 웃다"
         }
       ],
-      "status": "open"
+      "status": "graded"
     },
     {
       "id": "ms40dobajr7gq",
@@ -878,9 +878,9 @@
       "meaning_kr": "(자물쇠로) 잠그다",
       "example_en": "to fasten something with a lock",
       "example_kr": "",
-      "mnemonic": "락(lock)은 '락'을 걸어서 잠그는 거! 문을 락으로 딱 잠갔더니 locked! 🔒",
-      "missCount": 1,
-      "lastMissedAt": "2026-08-02T12:52:15.876Z"
+      "mnemonic": "문을 락(lock)! 잠갔어요! block(막다)이랑 헷갈리지 마세요, lock은 열쇠로 잠그는 거예요! 🔐",
+      "missCount": 2,
+      "lastMissedAt": "2026-08-02T13:02:14.516Z"
     },
     {
       "word": "tide",
@@ -914,18 +914,18 @@
       "meaning_kr": "방수의",
       "example_en": "designed to prevent water from entering",
       "example_kr": "",
-      "mnemonic": "워터프루프(waterproof)는 '물(water) 프루프'! 물이 못 뚫는(proof) 옷이 waterproof야! ☔",
-      "missCount": 1,
-      "lastMissedAt": "2026-08-02T12:52:15.876Z"
+      "mnemonic": "물(water)을 뚫지(proof) 못해요! waterproof는 띄어쓰기 없이 붙여 써야 해요, 물방울처럼 딱 붙어있어요! 💧",
+      "missCount": 2,
+      "lastMissedAt": "2026-08-02T13:02:14.516Z"
     },
     {
       "word": "threatening",
       "meaning_kr": "위협적인",
       "example_en": "expressing trouble or danger",
       "example_kr": "",
-      "mnemonic": "뜨레트닝(threatening)은 '뜨레(threat)+닝'! 위협하는 말투가 threatening이야! 😨",
-      "missCount": 1,
-      "lastMissedAt": "2026-08-02T12:52:15.876Z"
+      "mnemonic": "쓰레(threa)기통이 위협적으로 노려봐! 쓰레트닝, threatening엔 h가 꼭 필요해요! 😤",
+      "missCount": 2,
+      "lastMissedAt": "2026-08-02T13:02:14.515Z"
     },
     {
       "word": "sink - sank",
@@ -950,9 +950,9 @@
       "meaning_kr": "신비한",
       "example_en": "strange, unknown, or difficult to understand",
       "example_kr": "",
-      "mnemonic": "미스테리어스(mysterious)는 '미스테리'한 것! 미스테리한 사건이 mysterious야! 🕵️",
-      "missCount": 1,
-      "lastMissedAt": "2026-08-02T12:52:15.876Z"
+      "mnemonic": "미스터(myster)리한 이야기가 mysterious해요! mystu가 아니라 myste예요, 미스터리는 e로 써야 해요! 🕵️",
+      "missCount": 2,
+      "lastMissedAt": "2026-08-02T13:02:14.516Z"
     },
     {
       "word": "cliff",
@@ -968,9 +968,9 @@
       "meaning_kr": "작은 점",
       "example_en": "a small spot or area",
       "example_kr": "",
-      "mnemonic": "닷(dot)은 '닷'!하고 찍는 점! 이메일 주소에 닷(.)찍는 게 dot이야! 📍",
-      "missCount": 1,
-      "lastMissedAt": "2026-08-02T12:52:15.876Z"
+      "mnemonic": "작은 점 하나, 닷(dot)! 도트무늬 옷 입고 다니듯 점 콕콕 찍는 게 dot이에요! ⚫",
+      "missCount": 2,
+      "lastMissedAt": "2026-08-02T13:02:14.516Z"
     },
     {
       "word": "cave",
@@ -1040,9 +1040,9 @@
       "meaning_kr": "만(육지 쪽으로 들어와 있는 해안)",
       "example_en": "a large area of water that is partly surrounded by land",
       "example_kr": "",
-      "mnemonic": "베이(bay)는 '베이'글 먹으면서 보는 만! 바다가 쏙 들어온 곳이 bay야! 🌉",
-      "missCount": 1,
-      "lastMissedAt": "2026-08-02T12:52:15.877Z"
+      "mnemonic": "베이(bay)글 파는 조용한 만(bay)이야! 가방(bag)이랑 헷갈리면 안 돼요~ 🌊",
+      "missCount": 2,
+      "lastMissedAt": "2026-08-02T13:02:14.515Z"
     },
     {
       "word": "impress - impressed",
