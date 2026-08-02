@@ -236,6 +236,315 @@
   },
   "quizzes": [
     {
+      "id": "msbswhv8n4zpn",
+      "wordsetId": "mrxcw387tuiho",
+      "title": "voca1,2,3 듣기 퀴즈 (2026. 8. 2.)",
+      "createdAt": "2026-08-02T12:53:08.852Z",
+      "items": [
+        {
+          "no": 1,
+          "word": "crouch - crouched",
+          "meaning_kr": "쭈그리고 앉다",
+          "example_en": "to lower your body to the ground by bending your legs",
+          "example_kr": "",
+          "type": "C",
+          "answer": "crouch - crouched",
+          "meaningAnswer": "쭈그리고 앉다"
+        },
+        {
+          "no": 2,
+          "word": "tide",
+          "meaning_kr": "조류, 밀물과 썰물",
+          "example_en": "the regular rise and fall of ocean water levels",
+          "example_kr": "",
+          "type": "C",
+          "answer": "tide",
+          "meaningAnswer": "조류, 밀물과 썰물"
+        },
+        {
+          "no": 3,
+          "word": "expect - expected",
+          "meaning_kr": "예상하다",
+          "example_en": "to think that something will happen",
+          "example_kr": "",
+          "type": "A",
+          "answer": "expect - expected",
+          "meaningAnswer": "예상하다"
+        },
+        {
+          "no": 4,
+          "word": "stick out - stuck out",
+          "meaning_kr": "(톡) 튀어나오다",
+          "example_en": "to extend outward beyond an edge or surface",
+          "example_kr": "",
+          "type": "A",
+          "answer": "stick out - stuck out",
+          "meaningAnswer": "(톡) 튀어나오다"
+        },
+        {
+          "no": 5,
+          "word": "impress - impressed",
+          "meaning_kr": "깊은 인상을 주다",
+          "example_en": "to cause someone to feel admiration or interest",
+          "example_kr": "",
+          "type": "C",
+          "answer": "impress - impressed",
+          "meaningAnswer": "깊은 인상을 주다"
+        },
+        {
+          "no": 6,
+          "word": "compare - compared",
+          "meaning_kr": "비교하다",
+          "example_en": "to measure or judge against something else",
+          "example_kr": "",
+          "type": "C",
+          "answer": "compare - compared",
+          "meaningAnswer": "비교하다"
+        },
+        {
+          "no": 7,
+          "word": "threatening",
+          "meaning_kr": "위협적인",
+          "example_en": "expressing trouble or danger",
+          "example_kr": "",
+          "type": "C",
+          "answer": "threatening",
+          "meaningAnswer": "위협적인"
+        },
+        {
+          "no": 8,
+          "word": "bay",
+          "meaning_kr": "만(육지 쪽으로 들어와 있는 해안)",
+          "example_en": "a large area of water that is partly surrounded by land",
+          "example_kr": "",
+          "type": "A",
+          "answer": "bay",
+          "meaningAnswer": "만(육지 쪽으로 들어와 있는 해안)"
+        },
+        {
+          "no": 9,
+          "word": "path",
+          "meaning_kr": "작은 길",
+          "example_en": "a track that is made by people or animals walking over the ground",
+          "example_kr": "",
+          "type": "C",
+          "answer": "path",
+          "meaningAnswer": "작은 길"
+        },
+        {
+          "no": 10,
+          "word": "roll - rolled",
+          "meaning_kr": "굴러가다",
+          "example_en": "to move across the ground by turning over and over",
+          "example_kr": "",
+          "type": "C",
+          "answer": "roll - rolled",
+          "meaningAnswer": "굴러가다"
+        },
+        {
+          "no": 11,
+          "word": "terror",
+          "meaning_kr": "(극심한) 두려움",
+          "example_en": "a very strong feeling of fear",
+          "example_kr": "",
+          "type": "C",
+          "answer": "terror",
+          "meaningAnswer": "(극심한) 두려움"
+        },
+        {
+          "no": 12,
+          "word": "wonder - wondered",
+          "meaning_kr": "궁금해하다",
+          "example_en": "to think about something with curiosity",
+          "example_kr": "",
+          "type": "C",
+          "answer": "wonder - wondered",
+          "meaningAnswer": "궁금해하다"
+        },
+        {
+          "no": 13,
+          "word": "cave",
+          "meaning_kr": "동굴",
+          "example_en": "a large, naturally made hole in the ground",
+          "example_kr": "",
+          "type": "A",
+          "answer": "cave",
+          "meaningAnswer": "동굴"
+        },
+        {
+          "no": 14,
+          "word": "waterproof",
+          "meaning_kr": "방수의",
+          "example_en": "designed to prevent water from entering",
+          "example_kr": "",
+          "type": "A",
+          "answer": "waterproof",
+          "meaningAnswer": "방수의"
+        },
+        {
+          "no": 15,
+          "word": "edge",
+          "meaning_kr": "가장자리, 모서리",
+          "example_en": "the line where an area begins or ends",
+          "example_kr": "",
+          "type": "A",
+          "answer": "edge",
+          "meaningAnswer": "가장자리, 모서리"
+        },
+        {
+          "no": 16,
+          "word": "stitch",
+          "meaning_kr": "(상처를 봉합한) 바늘땀",
+          "example_en": "a piece of thread that is used to close a wound",
+          "example_kr": "",
+          "type": "C",
+          "answer": "stitch",
+          "meaningAnswer": "(상처를 봉합한) 바늘땀"
+        },
+        {
+          "no": 17,
+          "word": "take a look - took a look",
+          "meaning_kr": "살펴보다, 점검하다",
+          "example_en": "to look at something closely",
+          "example_kr": "",
+          "type": "C",
+          "answer": "take a look - took a look",
+          "meaningAnswer": "살펴보다, 점검하다"
+        },
+        {
+          "no": 18,
+          "word": "cliff",
+          "meaning_kr": "절벽",
+          "example_en": "a high, steep surface of rock or earth",
+          "example_kr": "",
+          "type": "A",
+          "answer": "cliff",
+          "meaningAnswer": "절벽"
+        },
+        {
+          "no": 19,
+          "word": "stammer - stammered",
+          "meaning_kr": "말을 더듬다",
+          "example_en": "to speak with difficulties",
+          "example_kr": "",
+          "type": "A",
+          "answer": "stammer - stammered",
+          "meaningAnswer": "말을 더듬다"
+        },
+        {
+          "no": 20,
+          "word": "sink - sank",
+          "meaning_kr": "가라앉다",
+          "example_en": "to move down to a lower position",
+          "example_kr": "",
+          "type": "A",
+          "answer": "sink - sank",
+          "meaningAnswer": "가라앉다"
+        },
+        {
+          "no": 21,
+          "word": "stranded",
+          "meaning_kr": "오도 가도 못하게 된",
+          "example_en": "unable to leave a place because of a problem",
+          "example_kr": "",
+          "type": "A",
+          "answer": "stranded",
+          "meaningAnswer": "오도 가도 못하게 된"
+        },
+        {
+          "no": 22,
+          "word": "non-stop",
+          "meaning_kr": "쉬지 않고 계속",
+          "example_en": "without stopping",
+          "example_kr": "",
+          "type": "C",
+          "answer": "non-stop",
+          "meaningAnswer": "쉬지 않고 계속"
+        },
+        {
+          "no": 23,
+          "word": "decision",
+          "meaning_kr": "결정, 판단",
+          "example_en": "a choice that you make about something after thinking about it",
+          "example_kr": "",
+          "type": "A",
+          "answer": "decision",
+          "meaningAnswer": "결정, 판단"
+        },
+        {
+          "no": 24,
+          "word": "block - blocked",
+          "meaning_kr": "막다, 차단하다",
+          "example_en": "to stop something from getting through",
+          "example_kr": "",
+          "type": "A",
+          "answer": "block - blocked",
+          "meaningAnswer": "막다, 차단하다"
+        },
+        {
+          "no": 25,
+          "word": "lock - locked",
+          "meaning_kr": "(자물쇠로) 잠그다",
+          "example_en": "to fasten something with a lock",
+          "example_kr": "",
+          "type": "A",
+          "answer": "lock - locked",
+          "meaningAnswer": "(자물쇠로) 잠그다"
+        },
+        {
+          "no": 26,
+          "word": "common sense",
+          "meaning_kr": "상식",
+          "example_en": "the ability to think and behave in a reasonable way",
+          "example_kr": "",
+          "type": "C",
+          "answer": "common sense",
+          "meaningAnswer": "상식"
+        },
+        {
+          "no": 27,
+          "word": "trust - trusted",
+          "meaning_kr": "신뢰하다, 믿다",
+          "example_en": "to believe that someone will do the right thing",
+          "example_kr": "",
+          "type": "A",
+          "answer": "trust - trusted",
+          "meaningAnswer": "신뢰하다, 믿다"
+        },
+        {
+          "no": 28,
+          "word": "mysterious",
+          "meaning_kr": "신비한",
+          "example_en": "strange, unknown, or difficult to understand",
+          "example_kr": "",
+          "type": "C",
+          "answer": "mysterious",
+          "meaningAnswer": "신비한"
+        },
+        {
+          "no": 29,
+          "word": "dot",
+          "meaning_kr": "작은 점",
+          "example_en": "a small spot or area",
+          "example_kr": "",
+          "type": "A",
+          "answer": "dot",
+          "meaningAnswer": "작은 점"
+        },
+        {
+          "no": 30,
+          "word": "grin - grinned",
+          "meaning_kr": "(소리 없이) 활짝 웃다",
+          "example_en": "to smile widely",
+          "example_kr": "",
+          "type": "A",
+          "answer": "grin - grinned",
+          "meaningAnswer": "(소리 없이) 활짝 웃다"
+        }
+      ],
+      "status": "open"
+    },
+    {
       "id": "ms40dobajr7gq",
       "wordsetId": "mrxcw387tuiho",
       "title": "voca1,2,3 듣기 퀴즈 (2026. 7. 28.)",
