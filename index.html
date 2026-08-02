@@ -152,6 +152,7 @@
 <header>
   <h1 id="appTitle">🌟 또잉이 영단어 대작전 🌟</h1>
   <p id="appSubtitle">단어장 사진 한 장으로 뒤죽박죽 퀴즈 만들고, 채점도 스르륵!</p>
+  <button class="btn btn-outline btn-sm no-print" id="openSetupBtn" style="margin-top:8px;">⚙️ 기기 설정 보기/수정</button>
 </header>
 
 <nav class="no-print" id="mainNav"></nav>
@@ -272,6 +273,9 @@
       $('ghRepo').value = prefill.ghRepo||''; $('ghBranch').value = prefill.ghBranch||'main';
       $('ghToken').value = prefill.ghToken||''; $('apiKey').value = prefill.apiKey||'';
       $('modelSelect').value = prefill.model||'claude-sonnet-5';
+      pendingRole = prefill.role || null;
+      $('roleParentBtn').style.outline = pendingRole==='parent' ? '3px solid var(--purple)' : 'none';
+      $('roleChildBtn').style.outline = pendingRole==='child' ? '3px solid var(--purple)' : 'none';
     }
   }
   let pendingRole = null;
@@ -279,6 +283,7 @@
     $('roleParentBtn').style.outline='3px solid var(--purple)'; $('roleChildBtn').style.outline='none'; });
   $('roleChildBtn').addEventListener('click', ()=>{ pendingRole='child';
     $('roleChildBtn').style.outline='3px solid var(--purple)'; $('roleParentBtn').style.outline='none'; });
+  $('openSetupBtn') && $('openSetupBtn').addEventListener('click', ()=>{ showSetup(CFG || {}); });
 
   $('setupSaveBtn').addEventListener('click', ()=>{
     const role = pendingRole || (CFG && CFG.role) || 'child';
