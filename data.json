@@ -542,10 +542,281 @@
           "meaningAnswer": "예상하다"
         }
       ],
-      "status": "open"
+      "status": "graded"
     }
   ],
-  "mistakes": [],
+  "mistakes": [
+    {
+      "word": "common sense",
+      "meaning_kr": "상식",
+      "example_en": "the ability to think and behave in a reasonable way",
+      "example_kr": "",
+      "mnemonic": "커먼(common) 센스(sense)는 '커먼 센스' 그대로! 상식은 다 같이 아는 거니까 '공통(common) 센스(sense)'로 기억해봐! 😊",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.875Z"
+    },
+    {
+      "word": "stranded",
+      "meaning_kr": "오도 가도 못하게 된",
+      "example_en": "unable to leave a place because of a problem",
+      "example_kr": "",
+      "mnemonic": "스트랜디드(stranded)는 '스트레스 받은 애'가 길에 갇힌 느낌! 오도가도 못하고 스트레스 받아서 stranded야! 😣",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.876Z"
+    },
+    {
+      "word": "lock - locked",
+      "meaning_kr": "(자물쇠로) 잠그다",
+      "example_en": "to fasten something with a lock",
+      "example_kr": "",
+      "mnemonic": "락(lock)은 '락'을 걸어서 잠그는 거! 문을 락으로 딱 잠갔더니 locked! 🔒",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.876Z"
+    },
+    {
+      "word": "tide",
+      "meaning_kr": "조류, 밀물과 썰물",
+      "example_en": "the regular rise and fall of ocean water levels",
+      "example_kr": "",
+      "mnemonic": "타이드(tide)는 파도가 '타이밍' 맞춰 밀려오는 것! 바닷물이 타이밍 맞게 들어왔다 나갔다 하는 게 tide야! 🌊",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.876Z"
+    },
+    {
+      "word": "wonder - wondered",
+      "meaning_kr": "궁금해하다",
+      "example_en": "to think about something with curiosity",
+      "example_kr": "",
+      "mnemonic": "원더(wonder)는 '원더걸스'처럼 궁금한 게 많은 것! 원더걸스가 궁금해서 wondered! 🤔",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.876Z"
+    },
+    {
+      "word": "crouch - crouched",
+      "meaning_kr": "쭈그리고 앉다",
+      "example_en": "to lower your body to the ground by bending your legs",
+      "example_kr": "",
+      "mnemonic": "크라우치(crouch)는 '크라우칭 타이거'처럼 웅크리는 자세! 호랑이가 크라우치 자세로 crouched! 🐯",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.876Z"
+    },
+    {
+      "word": "waterproof",
+      "meaning_kr": "방수의",
+      "example_en": "designed to prevent water from entering",
+      "example_kr": "",
+      "mnemonic": "워터프루프(waterproof)는 '물(water) 프루프'! 물이 못 뚫는(proof) 옷이 waterproof야! ☔",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.876Z"
+    },
+    {
+      "word": "threatening",
+      "meaning_kr": "위협적인",
+      "example_en": "expressing trouble or danger",
+      "example_kr": "",
+      "mnemonic": "뜨레트닝(threatening)은 '뜨레(threat)+닝'! 위협하는 말투가 threatening이야! 😨",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.876Z"
+    },
+    {
+      "word": "sink - sank",
+      "meaning_kr": "가라앉다",
+      "example_en": "to move down to a lower position",
+      "example_kr": "",
+      "mnemonic": "싱크(sink)는 '싱크대'처럼 물에 가라앉는 것! 배가 싱크대처럼 sank! 🚢",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.876Z"
+    },
+    {
+      "word": "stitch",
+      "meaning_kr": "(상처를 봉합한) 바늘땀",
+      "example_en": "a piece of thread that is used to close a wound",
+      "example_kr": "",
+      "mnemonic": "스티치(stitch)는 '스티치' 인형처럼 꿰맨 것! 릴로와 스티치가 바늘로 꿰맨 stitch! 🧵",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.876Z"
+    },
+    {
+      "word": "mysterious",
+      "meaning_kr": "신비한",
+      "example_en": "strange, unknown, or difficult to understand",
+      "example_kr": "",
+      "mnemonic": "미스테리어스(mysterious)는 '미스테리'한 것! 미스테리한 사건이 mysterious야! 🕵️",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.876Z"
+    },
+    {
+      "word": "cliff",
+      "meaning_kr": "절벽",
+      "example_en": "a high, steep surface of rock or earth",
+      "example_kr": "",
+      "mnemonic": "클리프(cliff)는 '클리프'행어처럼 절벽! 절벽 끝에서 클리프행어 하는 cliff! ⛰️",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.876Z"
+    },
+    {
+      "word": "dot",
+      "meaning_kr": "작은 점",
+      "example_en": "a small spot or area",
+      "example_kr": "",
+      "mnemonic": "닷(dot)은 '닷'!하고 찍는 점! 이메일 주소에 닷(.)찍는 게 dot이야! 📍",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.876Z"
+    },
+    {
+      "word": "cave",
+      "meaning_kr": "동굴",
+      "example_en": "a large, naturally made hole in the ground",
+      "example_kr": "",
+      "mnemonic": "케이브(cave)는 '케이브맨'이 사는 동굴! 원시인이 사는 곳이 cave야! 🕳️",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.876Z"
+    },
+    {
+      "word": "edge",
+      "meaning_kr": "가장자리, 모서리",
+      "example_en": "the line where an area begins or ends",
+      "example_kr": "",
+      "mnemonic": "엣지(edge)는 '엣지있게' 딱 끝나는 가장자리! 엣지있는 스타일이 edge에서 왔어! ✂️",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.876Z"
+    },
+    {
+      "word": "non-stop",
+      "meaning_kr": "쉬지 않고 계속",
+      "example_en": "without stopping",
+      "example_kr": "",
+      "mnemonic": "논스탑(non-stop)은 '논(non) 스톱(stop)'! 안 멈추고(non) 계속 가는(stop 아님) non-stop! 🏃",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.876Z"
+    },
+    {
+      "word": "stick out - stuck out",
+      "meaning_kr": "(톡) 튀어나오다",
+      "example_en": "to extend outward beyond an edge or surface",
+      "example_kr": "",
+      "mnemonic": "스틱아웃(stick out)은 '스틱'처럼 튀어나온 것! 막대기가 stuck out! 📏",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.876Z"
+    },
+    {
+      "word": "roll - rolled",
+      "meaning_kr": "굴러가다",
+      "example_en": "to move across the ground by turning over and over",
+      "example_kr": "",
+      "mnemonic": "롤(roll)은 '롤케이크'처럼 돌돌 마는 것! 롤케이크가 rolled! 🍰",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.876Z"
+    },
+    {
+      "word": "stammer - stammered",
+      "meaning_kr": "말을 더듬다",
+      "example_en": "to speak with difficulties",
+      "example_kr": "",
+      "mnemonic": "스태머(stammer)는 '스태미나' 부족해서 더듬는 것! 말이 스태미나 없이 stammered! 😅",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.876Z"
+    },
+    {
+      "word": "path",
+      "meaning_kr": "작은 길",
+      "example_en": "a track that is made by people or animals walking over the ground",
+      "example_kr": "",
+      "mnemonic": "패스(path)는 '패스'하며 지나가는 길! 축구공을 패스하듯 걸어가는 길이 path야! 🛤️",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.877Z"
+    },
+    {
+      "word": "bay",
+      "meaning_kr": "만(육지 쪽으로 들어와 있는 해안)",
+      "example_en": "a large area of water that is partly surrounded by land",
+      "example_kr": "",
+      "mnemonic": "베이(bay)는 '베이'글 먹으면서 보는 만! 바다가 쏙 들어온 곳이 bay야! 🌉",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.877Z"
+    },
+    {
+      "word": "impress - impressed",
+      "meaning_kr": "깊은 인상을 주다",
+      "example_en": "to cause someone to feel admiration or interest",
+      "example_kr": "",
+      "mnemonic": "임프레스(impress)는 '임팩트 프레스'! 강한 임팩트를 눌러서(press) impressed! 👏",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.877Z"
+    },
+    {
+      "word": "trust - trusted",
+      "meaning_kr": "신뢰하다, 믿다",
+      "example_en": "to believe that someone will do the right thing",
+      "example_kr": "",
+      "mnemonic": "트러스트(trust)는 '트러스트'미! 믿음을 뜻하는 trust야! 🤝",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.877Z"
+    },
+    {
+      "word": "block - blocked",
+      "meaning_kr": "막다, 차단하다",
+      "example_en": "to stop something from getting through",
+      "example_kr": "",
+      "mnemonic": "블록(block)은 '블록' 장난감처럼 막는 것! 레고 블록으로 길을 blocked! 🧱",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.877Z"
+    },
+    {
+      "word": "take a look - took a look",
+      "meaning_kr": "살펴보다, 점검하다",
+      "example_en": "to look at something closely",
+      "example_kr": "",
+      "mnemonic": "테이크 어 룩(take a look)은 '테이크아웃'처럼 잠깐 보는 것! 테이크아웃하듯 잠깐 took a look! 👀",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.877Z"
+    },
+    {
+      "word": "grin - grinned",
+      "meaning_kr": "(소리 없이) 활짝 웃다",
+      "example_en": "to smile widely",
+      "example_kr": "",
+      "mnemonic": "그린(grin)은 '그린'라이트처럼 씩 웃는 것! 그린라이트 켜지듯 grinned! 😁",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.877Z"
+    },
+    {
+      "word": "decision",
+      "meaning_kr": "결정, 판단",
+      "example_en": "a choice that you make about something after thinking about it",
+      "example_kr": "",
+      "mnemonic": "디시전(decision)은 '디씨전(DC전)'처럼 결정하는 것! 디씨 전투에서 중요한 decision! ⚖️",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.877Z"
+    },
+    {
+      "word": "compare - compared",
+      "meaning_kr": "비교하다",
+      "example_en": "to measure or judge against something else",
+      "example_kr": "",
+      "mnemonic": "컴페어(compare)는 '컴퓨터 페어'로 비교하는 것! 컴퓨터끼리 페어로 compared! 💻",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.877Z"
+    },
+    {
+      "word": "terror",
+      "meaning_kr": "(극심한) 두려움",
+      "example_en": "a very strong feeling of fear",
+      "example_kr": "",
+      "mnemonic": "테러(terror)는 '테러'사건처럼 무서운 것! 테러가 일어나면 terror야! 😱",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.877Z"
+    },
+    {
+      "word": "expect - expected",
+      "meaning_kr": "예상하다",
+      "example_en": "to think that something will happen",
+      "example_kr": "",
+      "mnemonic": "익스펙트(expect)는 '엑스(X) 스펙'을 기대하는 것! 엑스맨 스펙을 expected! ✨",
+      "missCount": 1,
+      "lastMissedAt": "2026-08-02T12:52:15.877Z"
+    }
+  ],
   "meta": {
     "updatedAt": ""
   }
