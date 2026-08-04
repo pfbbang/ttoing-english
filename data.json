@@ -542,7 +542,7 @@
           "meaningAnswer": "오도 가도 못하게 된"
         }
       ],
-      "status": "open"
+      "status": "graded"
     },
     {
       "id": "msbswhv8n4zpn",
@@ -1187,9 +1187,9 @@
       "meaning_kr": "(자물쇠로) 잠그다",
       "example_en": "to fasten something with a lock",
       "example_kr": "",
-      "mnemonic": "문을 락(lock)! 잠갔어요! block(막다)이랑 헷갈리지 마세요, lock은 열쇠로 잠그는 거예요! 🔐",
-      "missCount": 2,
-      "lastMissedAt": "2026-08-02T13:02:14.516Z"
+      "mnemonic": "lock(락)은 문을 잠그는 자물쇠야! 딸깍 락(lock) 소리내며 문을 잠그듯 lock-locked를 기억해봐! 🔒",
+      "missCount": 3,
+      "lastMissedAt": "2026-08-04T01:15:22.815Z"
     },
     {
       "word": "tide",
@@ -1313,9 +1313,9 @@
       "meaning_kr": "(톡) 튀어나오다",
       "example_en": "to extend outward beyond an edge or surface",
       "example_kr": "",
-      "mnemonic": "스틱아웃(stick out)은 '스틱'처럼 튀어나온 것! 막대기가 stuck out! 📏",
-      "missCount": 1,
-      "lastMissedAt": "2026-08-02T12:52:15.876Z"
+      "mnemonic": "stick out(스틱 아웃)은 막대기(stick)가 쑥 튀어나온 모습이야! 뾰족한 스틱이 밖으로 쑥 나온 걸 떠올리며 stick out - stuck out을 외워보자! 📏",
+      "missCount": 2,
+      "lastMissedAt": "2026-08-04T01:15:22.816Z"
     },
     {
       "word": "roll - rolled",
